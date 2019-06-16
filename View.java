@@ -8,12 +8,9 @@
 
 interface View
 {
-    int getTick();
-    int getPlayerX();
-    int getPlayerY();
     String getWindowInput();
     
     //base funktionen
     Controller getController();
-    Controller setController();
+    void setController(Controller nc);
 }

@@ -1,11 +1,11 @@
 
 /**
- * Write a description of class SpielerModel here.
- * 
- * @author (your name) 
+ * Write a description of class MenuModel here.
+ *
+ * @author (your name)
  * @version (a version number or a date)
  */
-class SpielerModel implements Model
+public class MenuModel implements Model
 {
     Controller c;
     View v;
@@ -25,12 +25,13 @@ class SpielerModel implements Model
     public void setView(View nv){
         v = nv;
     }
-    
+
     /**
-     * Constructor for objects of class SpielerModel
+     * Constructor for objects of class MenuModel
      */
-    SpielerModel ()
+    public MenuModel()
     {
-        
+
     }
+
 }

@@ -6,13 +6,16 @@
  * @version (a version number or a date)
  */
 
-interface PartViewInterface extends View
+interface PartViewInterface
 {
     int getDeath();
+
     int getPartCount();
+
     PartView getRef();
-    
+
     //base funktionen
     Controller getController();
-    Controller setController();
+
+    void setController(Controller nc);
 }

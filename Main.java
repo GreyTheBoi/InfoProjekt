@@ -7,12 +7,15 @@
  */
 class Main
 {
-
+    View v;
+    Model m;
+    Controller c;
     /**
      * Constructor for objects of class Main
      */
     Main ()
     {
-        
+        c = new MenuController();
+        v = new TitelbildschirmView();
     }
 }

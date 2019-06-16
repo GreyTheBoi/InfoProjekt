@@ -8,12 +8,9 @@
 
 interface Model
 {
-    Model setModel();
-    Model getModel();
-    
     Controller getController();
-    Controller setController();
+    void setController(Controller nc);
     
     View getView();
-    View setView();
+    void setView(View nv);
 }

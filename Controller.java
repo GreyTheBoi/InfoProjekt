@@ -7,9 +7,9 @@
  */
 interface Controller
 {
-    Model setModel();
+    void setModel(Model nm);
     Model getModel();
     
+    void setView(View nv);
     View getView();
-    View setView();
 }

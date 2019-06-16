@@ -1,11 +1,11 @@
 
 /**
- * Write a description of class PartController here.
- * 
- * @author (your name) 
+ * Write a description of class MenuController here.
+ *
+ * @author (your name)
  * @version (a version number or a date)
  */
-class PartController implements Controller
+public class MenuController implements Controller
 {
     View v;
     Model m;
@@ -27,10 +27,10 @@ class PartController implements Controller
     }
 
     /**
-     * Constructor for objects of class PartController
+     * Constructor for objects of class MenuController
      */
-    PartController ()
+    public MenuController()
     {
-
+        
     }
 }
