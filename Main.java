@@ -17,5 +17,6 @@ class Main
     {
         c = new MenuController();
         v = new TitelbildschirmView();
+        m = new MenuModel();
     }
 }

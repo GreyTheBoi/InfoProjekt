@@ -1,6 +1,6 @@
 /**
-*Text genereted by Simple GUI Extension for BlueJ
-*/
+ *Text genereted by Simple GUI Extension for BlueJ
+ */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,13 +15,9 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.border.Border;
 import javax.swing.*;
 
-
-public class TitelbildschirmView extends JFrame implements View, KeyListener {
-    
+public class TitelbildschirmView extends JFrame implements View, KeyListener, ActionListener {
     Controller c;
-    
     String input;
-    
     private JMenuBar menuBar;
     private JButton AnleitungButton;
     private JRadioButton Einstellung1RadioButton;
@@ -52,7 +48,6 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
         contentPane.setPreferredSize(new Dimension(500,400));
         contentPane.setBackground(new Color(0,0,0));
 
-
         AnleitungButton = new JButton();
         AnleitungButton.setBounds(425,335,50,50);
         AnleitungButton.setBackground(new Color(255,255,255));
@@ -64,7 +59,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
 
         Einstellung1RadioButton = new JRadioButton();
         Einstellung1RadioButton.setBounds(10,55,90,35);
-        Einstellung1RadioButton.setBackground(new Color(214,217,223));
+        Einstellung1RadioButton.setBackground(new Color(255,255,255));
         Einstellung1RadioButton.setForeground(new Color(0,0,0));
         Einstellung1RadioButton.setEnabled(true);
         Einstellung1RadioButton.setFont(new Font("sansserif",0,12));
@@ -72,8 +67,8 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
         Einstellung1RadioButton.setVisible(true);
 
         Einstellung2RadioButton = new JRadioButton();
-        Einstellung2RadioButton.setBounds(12,90,90,35);
-        Einstellung2RadioButton.setBackground(new Color(214,217,223));
+        Einstellung2RadioButton.setBounds(10,90,90,35);
+        Einstellung2RadioButton.setBackground(new Color(255,255,255));
         Einstellung2RadioButton.setForeground(new Color(0,0,0));
         Einstellung2RadioButton.setEnabled(true);
         Einstellung2RadioButton.setFont(new Font("sansserif",0,12));
@@ -82,7 +77,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
 
         Einstellung3RadioButton = new JRadioButton();
         Einstellung3RadioButton.setBounds(10,125,90,35);
-        Einstellung3RadioButton.setBackground(new Color(214,217,223));
+        Einstellung3RadioButton.setBackground(new Color(255,255,255));
         Einstellung3RadioButton.setForeground(new Color(0,0,0));
         Einstellung3RadioButton.setEnabled(true);
         Einstellung3RadioButton.setFont(new Font("sansserif",0,12));
@@ -126,7 +121,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
         LadenButton.setVisible(true);
 
         NameTexarea = new JTextArea();
-        NameTexarea.setBounds(13,62,100,80);
+        NameTexarea.setBounds(15,60,100,80);
         NameTexarea.setBackground(new Color(255,255,255));
         NameTexarea.setForeground(new Color(0,0,0));
         NameTexarea.setEnabled(false);
@@ -143,6 +138,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
         StartButton.setFont(new Font("SansSerif",1,24));
         StartButton.setText("Start");
         StartButton.setVisible(true);
+        StartButton.addActionListener(this);
 
         TitelLabel = new JLabel();
         TitelLabel.setBounds(100,25,252,45);
@@ -195,19 +191,34 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
         contentPane.add(TitelPanel);
         contentPane.add(VonPanel);
         contentPane.add(panel2);
+
+        AnleitungButton.addKeyListener(this); //keine
+        Einstellung1RadioButton.addKeyListener(this); //ahnung 
+        Einstellung2RadioButton.addKeyListener(this); //wie
+        Einstellung3RadioButton.addKeyListener(this); //man
+        EinstellungLabel.addKeyListener(this); //listener
+        EndeButton.addKeyListener(this); //sonst
+        LabelVon.addKeyListener(this); //überall
+        LadenButton.addKeyListener(this); //hat
+        NameTexarea.addKeyListener(this); //¯\_(ツ)_/¯
+        StartButton.addKeyListener(this);
+        TitelLabel.addKeyListener(this);
+        TitelPanel.addKeyListener(this);
+        VonPanel.addKeyListener(this);
+        panel2.addKeyListener(this);
         contentPane.addKeyListener(this);
-        
+
         //adding panel to JFrame and seting of window position and close operation
         getContentPane().add(contentPane);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
         contentPane.setFocusable(true);
-        
+
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
     }
-    
+
     //base funktionen
     public Controller getController(){
         return c;
@@ -220,8 +231,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
     public String getWindowInput(){
         return "?";
     }
-    
-    
+
     //method for generate menu
     public void generateMenu(){
         menuBar = new JMenuBar();
@@ -236,7 +246,6 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
         JMenuItem preferences = new JMenuItem("Preferences   ");
         JMenuItem about = new JMenuItem("About   ");
 
-
         file.add(open);
         file.add(save);
         file.addSeparator();
@@ -249,23 +258,35 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener {
         menuBar.add(help);
     }
 
-     public void keyPressed(KeyEvent e) {  
-        EinstellungLabel.setText("Key Pressed");  
-    }  
-    public void keyReleased(KeyEvent e) {  
-        EinstellungLabel.setText("Key Released");  
-    }  
-    public void keyTyped(KeyEvent e) {  
-        EinstellungLabel.setText("Key Typed");  
+    public void actionPerformed(ActionEvent e) {
+                if(e.getSource() == this.StartButton){
+            EinstellungLabel.setText(("got start"));
+        }
+        }
+    
+    public void keyPressed(KeyEvent e) {  
+        EinstellungLabel.setText("Pressed" + e.getKeyChar()); 
+        if(e.getKeyCode() == 27){ //escape
+            dispose();
+            System.exit(0);
+        }
     }  
 
-     public static void main(String[] args){
+    public void keyReleased(KeyEvent e) {  
+        EinstellungLabel.setText("Released" + e.getKeyChar());  
+    }  
+
+    public void keyTyped(KeyEvent e) {  
+        EinstellungLabel.setText("Typed" + e.getKeyChar());  
+    }  
+
+    public static void main(String[] args){
         System.setProperty("swing.defaultlaf", "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new TitelbildschirmView();
-            }
-        });
+                public void run() {
+                    new TitelbildschirmView();
+                }
+            });
     }
 
 }
