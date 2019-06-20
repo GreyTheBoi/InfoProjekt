@@ -1,9 +1,9 @@
 
 /**
- * Write a description of class TimelineView here.
+ * scrapped class [please look in LevelView for the Timeline]
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
  */
 class TimelineView implements View
 {

@@ -1,9 +1,9 @@
-
 /**
- * Write a description of class PartController here.
+ * Controller for all particels specifically
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
+ * 
  */
 class PartController implements Controller
 {

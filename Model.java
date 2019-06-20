@@ -1,9 +1,8 @@
-
 /**
- * Write a description of interface Model here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
+ * 
  */
 
 interface Model

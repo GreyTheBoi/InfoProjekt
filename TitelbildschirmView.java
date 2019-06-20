@@ -1,5 +1,9 @@
 /**
  *Text genereted by Simple GUI Extension for BlueJ
+ * 
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
+ * 
  */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
@@ -18,7 +22,6 @@ import javax.swing.*;
 public class TitelbildschirmView extends JFrame implements View, KeyListener, ActionListener {
     Controller c;
     String input;
-    private JMenuBar menuBar;
     private JButton AnleitungButton;
     private JRadioButton Einstellung1RadioButton;
     private JRadioButton Einstellung2RadioButton;
@@ -37,11 +40,8 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     //Constructor 
     public TitelbildschirmView(){
 
-        setTitle("TitelbildschirmView");
+        setTitle("Titelbildschirm");
         setSize(500,400);
-        //menu generate method
-        generateMenu();
-        setJMenuBar(menuBar);
 
         //pane with null layout
         JPanel contentPane = new JPanel(null);
@@ -219,6 +219,13 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         setVisible(true);
     }
 
+    public void changeScreen(View newView, Controller controller)
+    {
+        controller.setView(newView);
+        newView.setController(controller);
+        dispose();
+    }
+    
     //base funktionen
     public Controller getController(){
         return c;
@@ -232,38 +239,15 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         return "?";
     }
 
-    //method for generate menu
-    public void generateMenu(){
-        menuBar = new JMenuBar();
-
-        JMenu file = new JMenu("File");
-        JMenu tools = new JMenu("Tools");
-        JMenu help = new JMenu("Help");
-
-        JMenuItem open = new JMenuItem("Open   ");
-        JMenuItem save = new JMenuItem("Save   ");
-        JMenuItem exit = new JMenuItem("Exit   ");
-        JMenuItem preferences = new JMenuItem("Preferences   ");
-        JMenuItem about = new JMenuItem("About   ");
-
-        file.add(open);
-        file.add(save);
-        file.addSeparator();
-        file.add(exit);
-        tools.add(preferences);
-        help.add(about);
-
-        menuBar.add(file);
-        menuBar.add(tools);
-        menuBar.add(help);
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == this.StartButton){
+            EinstellungLabel.setText(("got start"));
+            View nv;
+            nv = new LevelView();
+            changeScreen(nv, c);
+        }
     }
 
-    public void actionPerformed(ActionEvent e) {
-                if(e.getSource() == this.StartButton){
-            EinstellungLabel.setText(("got start"));
-        }
-        }
-    
     public void keyPressed(KeyEvent e) {  
         EinstellungLabel.setText("Pressed" + e.getKeyChar()); 
         if(e.getKeyCode() == 27){ //escape
@@ -279,14 +263,5 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     public void keyTyped(KeyEvent e) {  
         EinstellungLabel.setText("Typed" + e.getKeyChar());  
     }  
-
-    public static void main(String[] args){
-        System.setProperty("swing.defaultlaf", "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    new TitelbildschirmView();
-                }
-            });
-    }
 
 }

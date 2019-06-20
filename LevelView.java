@@ -1,5 +1,9 @@
 /**
  *Text genereted by Simple GUI Extension for BlueJ
+ * 
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
+ * 
  */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
@@ -18,21 +22,28 @@ import javax.swing.*;
 public class LevelView extends JFrame implements View, KeyListener, ActionListener {
     Controller c;
     String input;
-    private JMenuBar menuBar;
+    
+    int PlayerX;
+    int PlayerY;
+    
+    int speed;
+    
     private JPanel TimelineBackground;
     private JPanel TimelineFront;
-    private JPanel panel3;
+    private JPanel player;
     private JButton keylistenObj; // >:| keine ahnung whyyyyyyyyyyyyyyy (bitte rausnehmen vor abgabe thx)
 
     //Constructor 
     public LevelView(){
-
+        
+        PlayerX = 250;
+        PlayerY = 200;
+        
+        speed = 10;
+        
         setTitle("LevelView");
         setSize(500,400);
-        //menu generate method
-        generateMenu();
-        setJMenuBar(menuBar);
-
+        
         //pane with null layout
         JPanel contentPane = new JPanel(null);
         contentPane.setPreferredSize(new Dimension(500,400));
@@ -59,15 +70,17 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         TimelineFront.setVisible(true);
         TimelineFront.addKeyListener(this);
 
-        panel3 = new JPanel(null);
-        panel3.setBorder(BorderFactory.createEtchedBorder(1));
-        panel3.setBounds(250,200,20,20);
-        panel3.setBackground(new Color(214,217,223));
-        panel3.setForeground(new Color(0,0,0));
-        panel3.setEnabled(true);
-        panel3.setFont(new Font("sansserif",0,12));
-        panel3.setVisible(true);
-        panel3.addKeyListener(this);
+        player = new JPanel(null);
+        player.setBorder(BorderFactory.createEtchedBorder(1));
+        player.setBounds(250,200,20,20);
+        player.setBackground(new Color(255,255,255));
+        player.setForeground(new Color(0,0,0));
+        player.setEnabled(true);
+        player.setFont(new Font("sansserif",0,12));
+        player.setLocation(PlayerX,PlayerY);
+        player.setVisible(true);
+        player.addKeyListener(this);
+        player.setFocusable(true);
 
         keylistenObj = new JButton("");
         keylistenObj.setBorder(BorderFactory.createEtchedBorder(1));
@@ -83,7 +96,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         //adding components to contentPane panel
         contentPane.add(TimelineBackground);
         contentPane.add(TimelineFront);
-        contentPane.add(panel3);
+        contentPane.add(player);
         contentPane.add(keylistenObj);
 
         //adding panel to JFrame and seting of window position and close operation
@@ -94,41 +107,17 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         setVisible(true);
     }
 
-    //method for generate menu
-    public void generateMenu(){
-        menuBar = new JMenuBar();
-
-        JMenu file = new JMenu("File");
-        JMenu tools = new JMenu("Tools");
-        JMenu help = new JMenu("Help");
-
-        JMenuItem open = new JMenuItem("Open   ");
-        JMenuItem save = new JMenuItem("Save   ");
-        JMenuItem exit = new JMenuItem("Exit   ");
-        JMenuItem preferences = new JMenuItem("Preferences   ");
-        JMenuItem about = new JMenuItem("About   ");
-
-        file.add(open);
-        file.add(save);
-        file.addSeparator();
-        file.add(exit);
-        tools.add(preferences);
-        help.add(about);
-
-        menuBar.add(file);
-        menuBar.add(tools);
-        menuBar.add(help);
-    }
-
     //base funktionen
     public Controller getController(){
         return c;
     }
-
+    
+    //controller setter
     public void setController(Controller nc){
         c = nc;
     }
-
+    
+    //getter für tasten input
     public String getWindowInput(){
         return "?";
     }
@@ -142,9 +131,29 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
     public void keyPressed(KeyEvent e) {  
         // goal.setText("Pressed" + e.getKeyChar()); 
-        if(e.getKeyCode() == 27){ //escape
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){ //escape
             dispose();
             System.exit(0);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_W){ //W
+            //player.show();
+            PlayerY -= speed;
+            player.setLocation(PlayerX,PlayerY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_A){ //A
+            //player.show();
+            PlayerX -= speed;
+            player.setLocation(PlayerX,PlayerY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_S){ //S
+            //player.show();
+            PlayerY += speed;
+            player.setLocation(PlayerX,PlayerY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_D){ //D
+            //player.show();
+            PlayerX += speed;
+            player.setLocation(PlayerX,PlayerY);
         }
     }  
 
@@ -154,15 +163,26 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
     public void keyTyped(KeyEvent e) {  
         // goal.setText("Typed" + e.getKeyChar());  
+        if(e.getKeyCode() == KeyEvent.VK_W){ //W
+            //player.show();
+            PlayerY -= speed;
+            player.setLocation(PlayerX,PlayerY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_A){ //A
+            //player.show();
+            PlayerX -= speed;
+            player.setLocation(PlayerX,PlayerY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_S){ //S
+            //player.show();
+            PlayerY += speed;
+            player.setLocation(PlayerX,PlayerY);
+        }
+        if(e.getKeyCode() == KeyEvent.VK_D){ //D
+            //player.show();
+            PlayerX += speed;
+            player.setLocation(PlayerX,PlayerY);
+        }
     }  
-
-    public static void main(String[] args){
-        System.setProperty("swing.defaultlaf", "com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    new LevelView();
-                }
-            });
-    }
 
 }

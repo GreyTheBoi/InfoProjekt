@@ -1,9 +1,8 @@
-
 /**
- * Write a description of class Main here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
+ * 
  */
 class Main
 {
@@ -18,5 +17,11 @@ class Main
         c = new MenuController();
         v = new TitelbildschirmView();
         m = new MenuModel();
+        
+        c.setModel(m);
+        c.setView(v);
+        v.setController(c);
+        m.setController(c);
+        m.setView(v);
     }
 }
