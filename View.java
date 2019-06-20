@@ -8,6 +8,7 @@
 interface View
 {
     String getWindowInput();
+    boolean getKeyState();
     
     //base funktionen
     Controller getController();

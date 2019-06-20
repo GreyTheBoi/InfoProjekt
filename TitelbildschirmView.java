@@ -21,7 +21,10 @@ import javax.swing.*;
 
 public class TitelbildschirmView extends JFrame implements View, KeyListener, ActionListener {
     Controller c;
+
     String input;
+    boolean keyPressed;
+    
     private JButton AnleitungButton;
     private JRadioButton Einstellung1RadioButton;
     private JRadioButton Einstellung2RadioButton;
@@ -235,8 +238,13 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         c = nc;
     }
 
+    //getter für tasten input
     public String getWindowInput(){
-        return "?";
+        return input;
+    }
+
+    public boolean getKeyState(){
+        return keyPressed;
     }
 
     public void actionPerformed(ActionEvent e) {

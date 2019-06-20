@@ -21,13 +21,14 @@ import javax.swing.*;
 
 public class LevelView extends JFrame implements View, KeyListener, ActionListener {
     Controller c;
-    String input;
-    
+
     int PlayerX;
     int PlayerY;
-    
+
     int speed;
-    
+    String input;
+    boolean keyPressed;
+
     private JPanel TimelineBackground;
     private JPanel TimelineFront;
     private JPanel player;
@@ -35,15 +36,15 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
     //Constructor 
     public LevelView(){
-        
+
         PlayerX = 250;
         PlayerY = 200;
-        
+
         speed = 10;
-        
+
         setTitle("LevelView");
         setSize(500,400);
-        
+
         //pane with null layout
         JPanel contentPane = new JPanel(null);
         contentPane.setPreferredSize(new Dimension(500,400));
@@ -111,15 +112,19 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     public Controller getController(){
         return c;
     }
-    
+
     //controller setter
     public void setController(Controller nc){
         c = nc;
     }
-    
+
     //getter für tasten input
     public String getWindowInput(){
-        return "?";
+        return input;
+    }
+
+    public boolean getKeyState(){
+        return keyPressed;
     }
 
     //listeners and interaction
@@ -137,52 +142,47 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         }
         if(e.getKeyCode() == KeyEvent.VK_W){ //W
             //player.show();
-            PlayerY -= speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "W";
         }
         if(e.getKeyCode() == KeyEvent.VK_A){ //A
             //player.show();
-            PlayerX -= speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "A";
         }
         if(e.getKeyCode() == KeyEvent.VK_S){ //S
             //player.show();
-            PlayerY += speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "S";
         }
         if(e.getKeyCode() == KeyEvent.VK_D){ //D
             //player.show();
-            PlayerX += speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "D";
         }
+        keyPressed = true;
     }  
 
     public void keyReleased(KeyEvent e) {  
         // goal.setText("Released" + e.getKeyChar());  
-    }  
-
-    public void keyTyped(KeyEvent e) {  
-        // goal.setText("Typed" + e.getKeyChar());  
         if(e.getKeyCode() == KeyEvent.VK_W){ //W
             //player.show();
-            PlayerY -= speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "W";
         }
         if(e.getKeyCode() == KeyEvent.VK_A){ //A
             //player.show();
-            PlayerX -= speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "A";
         }
         if(e.getKeyCode() == KeyEvent.VK_S){ //S
             //player.show();
-            PlayerY += speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "S";
         }
         if(e.getKeyCode() == KeyEvent.VK_D){ //D
             //player.show();
-            PlayerX += speed;
-            player.setLocation(PlayerX,PlayerY);
+            input = "D";
         }
+        keyPressed = false;
     }  
 
+    public void keyTyped(KeyEvent e) {  
+        // goal.setText("Typed" + e.getKeyChar()); 
+    }  
+
+    
 }

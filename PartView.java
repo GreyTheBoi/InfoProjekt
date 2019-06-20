@@ -9,6 +9,8 @@ class PartView implements PartViewInterface, View
     int death;
     int partCount;
     Controller c;
+    String input;
+    boolean keyPressed;
 
     public int getDeath(){
         return death;
@@ -31,8 +33,13 @@ class PartView implements PartViewInterface, View
         c = nc;
     }
 
+    //getter für tasten input
     public String getWindowInput(){
-        return "?";
+        return input;
+    }
+
+    public boolean getKeyState(){
+        return keyPressed;
     }
 
     /**

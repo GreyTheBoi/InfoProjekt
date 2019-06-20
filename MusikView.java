@@ -8,6 +8,8 @@ class MusikView implements View
 {
     
     Controller c;
+    String input;
+    boolean keyPressed;
     
     //base funktionen
     public Controller getController(){
@@ -18,8 +20,13 @@ class MusikView implements View
         c = nc;
     }
 
+    //getter für tasten input
     public String getWindowInput(){
-        return "?";
+        return input;
+    }
+
+    public boolean getKeyState(){
+        return keyPressed;
     }
     
     /**

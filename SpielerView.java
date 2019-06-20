@@ -9,6 +9,9 @@ class SpielerView implements View
     
     Controller c;
     
+    String input;
+    boolean keyPressed;
+    
     //base funktionen
     public Controller getController(){
         return c;
@@ -18,8 +21,13 @@ class SpielerView implements View
         c = nc;
     }
 
+    //getter für tasten input
     public String getWindowInput(){
-        return "?";
+        return input;
+    }
+
+    public boolean getKeyState(){
+        return keyPressed;
     }
     
     /**
