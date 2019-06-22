@@ -13,14 +13,26 @@ public class Ticker
     int deltaTime;
     long t0, t1;
     int t = 0;
+    public boolean running;
     
     /**
-     * Ticker( view, delta time )
+     *  changes view to keep smae ticker for all views and to have no nullpointers
      */
-    Ticker(View nV, int ndt){
+    public void setReference(View nV)
+    {
         v = nV;
-        deltaTime = ndt;
-        while(true)
+    }
+    
+    public void terminate()
+    {
+        running = false;
+        System.out.println("terminated");
+    }
+    
+    void tick(){
+        running = true;
+        
+        while(running == true)
         {
             t0 = System.currentTimeMillis(); //update absolute
             do
@@ -34,13 +46,16 @@ public class Ticker
             System.out.println("tick " + deltaTime/1000 + "s");
             v.update();
         }
+        
+        System.out.println("termination confirmed");
     }
     
     /**
-     *  changes view to keep smae ticker for all views and to have no nullpointers
+     * Ticker( view, delta time )
      */
-    public void setReference(View nV)
-    {
+    Ticker(View nV, int ndt){
         v = nV;
+        deltaTime = ndt;
+        tick();
     }
 }

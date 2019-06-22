@@ -25,9 +25,6 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     String input;
     boolean keyPressed;
     
-    Ticker t;
-    int time = 0; //debug
-    
     private JButton AnleitungButton;
     private JRadioButton Einstellung1RadioButton;
     private JRadioButton Einstellung2RadioButton;
@@ -223,8 +220,6 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
-        
-        t = new Ticker(this,20);
     }
 
     public void changeScreen(View newView, Controller controller)
@@ -263,7 +258,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
 
     public void keyPressed(KeyEvent e) {  
         EinstellungLabel.setText("Pressed" + e.getKeyChar()); 
-        if(e.getKeyCode() == 27){ //escape
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){ //escape
             dispose();
             System.exit(0);
         }
@@ -278,8 +273,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     }  
     
     public void update(){
-        time++;
-        System.out.println("tick " + time);
+        
     }
     
 }
