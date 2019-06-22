@@ -8,7 +8,11 @@ public class MenuController implements Controller
 {
     View v;
     Model m;
-
+    
+    public void processInput(){
+        
+    }
+    
     public void setModel(Model nm){
         m = nm;
     }

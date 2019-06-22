@@ -20,13 +20,6 @@ public class Ticker
     Ticker(View nV, int ndt){
         v = nV;
         deltaTime = ndt;
-    }
-    
-    /**
-     * 
-     */
-    public void tick()
-    {
         while(true)
         {
             t0 = System.currentTimeMillis(); //update absolute
@@ -41,5 +34,13 @@ public class Ticker
             System.out.println("tick " + deltaTime/1000 + "s");
             v.update();
         }
+    }
+    
+    /**
+     *  changes view to keep smae ticker for all views and to have no nullpointers
+     */
+    public void setReference(View nV)
+    {
+        v = nV;
     }
 }

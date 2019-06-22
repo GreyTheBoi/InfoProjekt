@@ -4,7 +4,7 @@
  * @version 20.06.19
  * 
  */
-class SpielerController implements Controller
+class LevelController implements Controller
 {
     View v;
     Model m;
@@ -25,10 +25,14 @@ class SpielerController implements Controller
         return v;
     }
 
+    public void processInput(){
+        
+    }
+
     /**
-     * Constructor for objects of class SpielerController
+     * Constructor for objects of class LevelController
      */
-    SpielerController ()
+    LevelController ()
     {
 
     }

@@ -7,6 +7,8 @@
  */
 interface Controller
 {
+    void processInput();
+    
     void setModel(Model nm);
     Model getModel();
     
