@@ -184,5 +184,8 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         // goal.setText("Typed" + e.getKeyChar()); 
     }  
 
+    public void update(){
+        
+    }
     
 }

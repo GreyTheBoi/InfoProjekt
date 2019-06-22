@@ -1,4 +1,5 @@
 /**
+ * scrapped class [please look in LevelView for the Player]
  * 
  * @author Nicolas Lisgaras 
  * @version 20.06.19
@@ -37,4 +38,9 @@ class SpielerView implements View
     {
         
     }
+    
+    public void update(){
+        
+    }
+    
 }

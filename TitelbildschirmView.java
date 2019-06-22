@@ -271,5 +271,9 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     public void keyTyped(KeyEvent e) {  
         EinstellungLabel.setText("Typed" + e.getKeyChar());  
     }  
-
+    
+    public void update(){
+        
+    }
+    
 }

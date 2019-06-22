@@ -50,4 +50,9 @@ class PartView implements PartViewInterface, View
         death = sDeath;
         partCount = sPartCount;
     }
+    
+    public void update(){
+        
+    }
+    
 }

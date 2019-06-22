@@ -30,6 +30,10 @@ class TimelineView implements View
         return keyPressed;
     }
     
+    public void update(){
+        
+    }
+    
     /**
      * Constructor for objects of class TimelineView
      */

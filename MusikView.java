@@ -36,4 +36,9 @@ class MusikView implements View
     {
         
     }
+    
+    public void update(){
+        
+    }
+    
 }
