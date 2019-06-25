@@ -20,13 +20,18 @@ import javax.swing.border.Border;
 import javax.swing.*;
 
 public class LevelView extends JFrame implements View, KeyListener, ActionListener{
-    Controller c;
+    Controller c; // controller
 
-    public int PlayerX;
-    public int PlayerY;
+    private int PlayerX;
+    private int PlayerY;
+    private int PlayerWidth;
+    private int PlayerHeight;
+    private int hView;// fenster weite
+    private int wView;// fenster höhe
 
-    public int vspeed;
-    public int hspeed;
+    private int vspeed;
+    private int hspeed;
+    private int speed;
     private String input;
 
     private boolean wPressed, aPressed, sPressed, dPressed;
@@ -42,16 +47,21 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     public LevelView(){
         PlayerX = 250;
         PlayerY = 200;
+        hView = 400;
+        wView = 500;
+        PlayerWidth = 20;
+        PlayerHeight = 20; //Muss ein Quadrat sein
 
         vspeed = 0;
         hspeed = 0;
-        
+        speed = 8;
+
         input = "N/A";
 
         wPressed = aPressed = sPressed = dPressed = false;
 
         setTitle("LevelView");
-        setSize(500,400);
+        setSize(wView,hView);
 
         //pane with null layout
         JPanel contentPane = new JPanel(null);
@@ -81,18 +91,19 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
         player = new JPanel(null);
         player.setBorder(BorderFactory.createEtchedBorder(1));
-        player.setBounds(250,200,20,20);
+        player.setBounds(250,200,PlayerWidth, PlayerHeight);
         player.setBackground(new Color(255,255,255));
-        player.setForeground(new Color(0,0,0));
+        player.setForeground(new Color(255,255,255));
         player.setEnabled(true);
         player.setFont(new Font("sansserif",0,12));
         player.setLocation(PlayerX,PlayerY);
         player.setVisible(true);
         player.addKeyListener(this);
+        player.setFocusable(true);
 
         keylistenObj = new JButton("");
         keylistenObj.setBorder(BorderFactory.createEtchedBorder(1));
-        keylistenObj.setBounds(250,200,20,20);
+        keylistenObj.setBounds(-100,-100,20,20);
         keylistenObj.setBackground(new Color(0,0,0));
         keylistenObj.setForeground(new Color(0,0,0));
         keylistenObj.setEnabled(true);
@@ -102,10 +113,10 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         keylistenObj.setFocusable(true);
 
         //adding components to contentPane panel
-        contentPane.add(player);
         contentPane.add(TimelineBackground);
         contentPane.add(TimelineFront);
         contentPane.add(keylistenObj);
+        contentPane.add(player);
 
         //adding panel to JFrame and seting of window position and close operation
         getContentPane().add(contentPane);
@@ -114,21 +125,31 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         pack();
         setVisible(true);
 
-        ticker = new Ticker(this, 200); //default: 20 ms
-
+        ticker = new Ticker(this, 20); //default: 20 ms
+        
+        out("Player Stats:\nPlayerX: " + PlayerX + "\tPlayerY: " + PlayerY + "\nPlayer size: " + PlayerHeight);
         System.out.println("E O C");
     }
 
     //base funktionen
+    /**
+     * Controller getter
+     */
     public Controller getController(){
         return c;
     }
 
     //controller setter
+    /**
+     * Controller setter
+     */
     public void setController(Controller nc){
         c = nc;
     }
 
+    /**
+     * input string getter
+     */
     public String getWindowInput(){
         return input;
     }
@@ -140,34 +161,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         // }
     }
 
-    public void keyPressed(KeyEvent e) {}  
-
-    public void keyReleased(KeyEvent e) {  
-        // goal.setText("Released" + e.getKeyChar());  
-        if(e.getKeyCode() == KeyEvent.VK_W){ //W
-            //player.show();
-            wPressed = false;
-            input = "N/A";
-        }
-        if(e.getKeyCode() == KeyEvent.VK_A){ //A
-            //player.show();
-            aPressed = false;
-            input = "N/A";
-        }
-        if(e.getKeyCode() == KeyEvent.VK_S){ //S
-            //player.show();
-            sPressed = false;
-            input = "N/A";
-        }
-        if(e.getKeyCode() == KeyEvent.VK_D){ //D
-            //player.show();
-            dPressed = false;
-            input = "N/A";
-        }
-    }  
-
-    public void keyTyped(KeyEvent e) {  
-        // goal.setText("Typed" + e.getKeyChar()); 
+    public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE){ //escape
             dispose();
             System.exit(0);
@@ -176,62 +170,96 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
             //player.show();
             wPressed = true;
             input = "w";
+            // out("w pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_A){ //A
             //player.show();
             aPressed = true;
             input = "a";
+            // out("a pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_S){ //S
             //player.show();
             sPressed = true;
             input = "s";
+            // out("s pressed");
         }
         if(e.getKeyCode() == KeyEvent.VK_D){ //D
             //player.show();
             dPressed = true;
             input = "d";
+            // out("d pressed");
         }
     }  
 
+    public void keyTyped(KeyEvent e) {}  
+
+    public void keyReleased(KeyEvent e) {  
+        // goal.setText("Released" + e.getKeyChar());  
+        if(e.getKeyCode() == KeyEvent.VK_W){ //W
+            //player.show();
+            wPressed = false;
+            input = "N/A";
+            // out("w released");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_A){ //A
+            //player.show();
+            aPressed = false;
+            input = "N/A";
+            // out("a released");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_S){ //S
+            //player.show();
+            sPressed = false;
+            input = "N/A";
+            // out("s released");
+        }
+        if(e.getKeyCode() == KeyEvent.VK_D){ //D
+            //player.show();
+            dPressed = false;
+            input = "N/A";
+            //out("d released");
+        }
+    }
+
+    /**
+     * kurz form der Output Fuktion
+     */
     public void out(String output){
         System.out.println(output);
     }
 
+    /**
+     * Per tick (vom ticker) wird der Inhalt dieser Funktion ausgeführt
+     */
     public void update(){        
         player.setVisible(true);
+        vspeed = 0;
+        hspeed = 0;
 
         if(wPressed == true){
-            vspeed = -10;
-
-        }
-        else if(wPressed == false){
-            vspeed = 0;
+            vspeed = -speed;
         }
 
         if(aPressed == true){
-            hspeed = -10;
-        }
-        else if(aPressed == false){
-            hspeed = 0;
+            hspeed = -speed;
         }
 
         if(sPressed == true){
-            vspeed = 10;
-        }
-        else if(sPressed == false){
-            vspeed = 0;
+            vspeed = speed;
         }
 
-        if(sPressed == true){
-            hspeed = 10;
-        }
-        else if(sPressed == false){
-            hspeed = 0;
+        if(dPressed == true){
+            hspeed = speed;
         }
 
         PlayerX += hspeed;
         PlayerY += vspeed;
         player.setLocation(PlayerX, PlayerY);
+
+        if(PlayerX > wView - PlayerWidth){ PlayerX = wView - PlayerWidth;}
+        if(PlayerY > hView - PlayerHeight){ PlayerY = hView - PlayerHeight;}
+        if(PlayerX < 0){ PlayerX = 0;}
+        if(PlayerY < 0){ PlayerY = 0;}
     }
 }
