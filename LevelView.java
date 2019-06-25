@@ -28,7 +28,8 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     public int vspeed;
     public int hspeed;
     private String input;
-    private boolean keyPressed;
+
+    private boolean wPressed, aPressed, sPressed, dPressed;
 
     private JPanel TimelineBackground;
     private JPanel TimelineFront;
@@ -36,21 +37,18 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     private JButton keylistenObj; // >:| keine ahnung whyyyyyyyyyyyyyyy (bitte rausnehmen vor abgabe thx)
 
     private Ticker ticker;
-    private int time = 0; //debug
-    private View thisRef;
 
     //Constructor 
     public LevelView(){
-
-        thisRef = this;
-
         PlayerX = 250;
         PlayerY = 200;
 
         vspeed = 0;
         hspeed = 0;
+        
+        input = "N/A";
 
-        input = "?";
+        wPressed = aPressed = sPressed = dPressed = false;
 
         setTitle("LevelView");
         setSize(500,400);
@@ -131,13 +129,8 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         c = nc;
     }
 
-    //getter für tasten input
     public String getWindowInput(){
         return input;
-    }
-
-    public boolean getKeyState(){
-        return keyPressed;
     }
 
     //listeners and interaction
@@ -147,50 +140,30 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         // }
     }
 
-    public void keyPressed(KeyEvent e) {  
-        // goal.setText("Pressed" + e.getKeyChar()); 
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){ //escape
-            dispose();
-            System.exit(0);
-        }
-        if(e.getKeyCode() == KeyEvent.VK_W){ //W
-            //player.show();
-            input = "W";
-        }
-        if(e.getKeyCode() == KeyEvent.VK_A){ //A
-            //player.show();
-            input = "A";
-        }
-        if(e.getKeyCode() == KeyEvent.VK_S){ //S
-            //player.show();
-            input = "S";
-        }
-        if(e.getKeyCode() == KeyEvent.VK_D){ //D
-            //player.show();
-            input = "D";
-        }
-        keyPressed = true;
-    }  
+    public void keyPressed(KeyEvent e) {}  
 
     public void keyReleased(KeyEvent e) {  
         // goal.setText("Released" + e.getKeyChar());  
         if(e.getKeyCode() == KeyEvent.VK_W){ //W
             //player.show();
-            input = "W";
+            wPressed = false;
+            input = "N/A";
         }
         if(e.getKeyCode() == KeyEvent.VK_A){ //A
             //player.show();
-            input = "A";
+            aPressed = false;
+            input = "N/A";
         }
         if(e.getKeyCode() == KeyEvent.VK_S){ //S
             //player.show();
-            input = "S";
+            sPressed = false;
+            input = "N/A";
         }
         if(e.getKeyCode() == KeyEvent.VK_D){ //D
             //player.show();
-            input = "D";
+            dPressed = false;
+            input = "N/A";
         }
-        keyPressed = false;
     }  
 
     public void keyTyped(KeyEvent e) {  
@@ -201,61 +174,64 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         }
         if(e.getKeyCode() == KeyEvent.VK_W){ //W
             //player.show();
-            input = "W";
+            wPressed = true;
+            input = "w";
         }
         if(e.getKeyCode() == KeyEvent.VK_A){ //A
             //player.show();
-            input = "A";
+            aPressed = true;
+            input = "a";
         }
         if(e.getKeyCode() == KeyEvent.VK_S){ //S
             //player.show();
-            input = "S";
+            sPressed = true;
+            input = "s";
         }
         if(e.getKeyCode() == KeyEvent.VK_D){ //D
             //player.show();
-            input = "D";
+            dPressed = true;
+            input = "d";
         }
-        keyPressed = true;
     }  
+
+    public void out(String output){
+        System.out.println(output);
+    }
 
     public void update(){        
         player.setVisible(true);
-        
-        String input = getWindowInput();
-        boolean ks = getKeyState();
 
-        //speed = 0;
+        if(wPressed == true){
+            vspeed = -10;
 
-        if(ks == true){
-            switch(input){
-                case "W":
-                vspeed = -10;
-                break;
-                case "A":
-                hspeed = -10;
-                break;
-                case "S":
-                vspeed = 10;
-                break;
-                case "D":
-                hspeed = 10;
-                break;
-            }
         }
-        else{
-            if(vspeed != 0){
-                vspeed = 0;
-            }
-            if(hspeed != 0){
-                hspeed = 0;
-            }
+        else if(wPressed == false){
+            vspeed = 0;
+        }
+
+        if(aPressed == true){
+            hspeed = -10;
+        }
+        else if(aPressed == false){
+            hspeed = 0;
+        }
+
+        if(sPressed == true){
+            vspeed = 10;
+        }
+        else if(sPressed == false){
+            vspeed = 0;
+        }
+
+        if(sPressed == true){
+            hspeed = 10;
+        }
+        else if(sPressed == false){
+            hspeed = 0;
         }
 
         PlayerX += hspeed;
         PlayerY += vspeed;
         player.setLocation(PlayerX, PlayerY);
-
-        time++;
-        System.out.println("tick " + time);
     }
 }
