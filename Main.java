@@ -15,7 +15,7 @@ class Main
     Main ()
     {
         c = new MenuController();
-        v = new LevelView();
+        v = new TitelbildschirmView();
         m = new MenuModel();
         
         c.setModel(m);

@@ -19,7 +19,7 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.border.Border;
 import javax.swing.*;
 
-public class LevelView extends JFrame implements View, KeyListener, ActionListener {
+public class LevelView extends JFrame implements View, KeyListener, ActionListener{
     Controller c;
 
     public int PlayerX;
@@ -35,11 +35,14 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     private JPanel player;
     private JButton keylistenObj; // >:| keine ahnung whyyyyyyyyyyyyyyy (bitte rausnehmen vor abgabe thx)
 
-    Ticker t;
-    int time = 0; //debug
+    private Ticker ticker;
+    private int time = 0; //debug
+    private View thisRef;
 
     //Constructor 
     public LevelView(){
+
+        thisRef = this;
 
         PlayerX = 250;
         PlayerY = 200;
@@ -88,7 +91,6 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         player.setLocation(PlayerX,PlayerY);
         player.setVisible(true);
         player.addKeyListener(this);
-        player.setFocusable(true);
 
         keylistenObj = new JButton("");
         keylistenObj.setBorder(BorderFactory.createEtchedBorder(1));
@@ -102,9 +104,9 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         keylistenObj.setFocusable(true);
 
         //adding components to contentPane panel
+        contentPane.add(player);
         contentPane.add(TimelineBackground);
         contentPane.add(TimelineFront);
-        contentPane.add(player);
         contentPane.add(keylistenObj);
 
         //adding panel to JFrame and seting of window position and close operation
@@ -114,7 +116,9 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         pack();
         setVisible(true);
 
-        t = new Ticker(this, 20);
+        ticker = new Ticker(this, 200); //default: 20 ms
+
+        System.out.println("E O C");
     }
 
     //base funktionen
@@ -215,6 +219,8 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     }  
 
     public void update(){        
+        player.setVisible(true);
+        
         String input = getWindowInput();
         boolean ks = getKeyState();
 
@@ -252,5 +258,4 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         time++;
         System.out.println("tick " + time);
     }
-
 }

@@ -222,10 +222,10 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         setVisible(true);
     }
 
-    public void changeScreen(View newView, Controller controller)
+    public void changeScreen(View newView, Controller newController)
     {
-        controller.setView(newView);
-        newView.setController(controller);
+        newController.setView(newView);
+        newView.setController(newController);
         dispose();
     }
     
@@ -250,9 +250,14 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.StartButton){
             EinstellungLabel.setText(("got start"));
+            
+            Controller nc;
+            nc = new LevelController();
+            
             View nv;
             nv = new LevelView();
-            changeScreen(nv, c);
+            
+            changeScreen(nv, nc);
         }
     }
 
