@@ -4,50 +4,15 @@
  * @version 20.06.19
  * 
  */
-class PartView implements PartViewInterface, View
+
+interface PartView
 {
-    int death;
-    int partCount;
-    Controller c;
-    String input;
+    int getDeath();
 
-    public int getDeath(){
-        return death;
-    }
-
-    public int getPartCount(){
-        return partCount;
-    }
-
-    public PartView getRef(){
-        return this;
-    }
+    int getPartCount();
 
     //base funktionen
-    public Controller getController(){
-        return c;
-    }
+    Controller getController();
 
-    public void setController(Controller nc){
-        c = nc;
-    }
-
-    //getter für tasten input
-    public String getWindowInput(){
-        return input;
-    }
-
-    /**
-     * Constructor for objects of class PartView
-     */
-    PartView (int sDeath, int sPartCount)
-    {
-        death = sDeath;
-        partCount = sPartCount;
-    }
-    
-    public void update(){
-        
-    }
-    
+    void setController(Controller nc);
 }

@@ -21,6 +21,7 @@ import javax.swing.*;
 
 public class LevelView extends JFrame implements View, KeyListener, ActionListener{
     Controller c; // controller
+    addItemTest ait;
 
     private int PlayerX;
     private int PlayerY;
@@ -42,6 +43,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     private JButton keylistenObj; // >:| keine ahnung whyyyyyyyyyyyyyyy (bitte rausnehmen vor abgabe thx)
 
     private Ticker ticker;
+    private AudioPlayer musik;
 
     //Constructor 
     public LevelView(){
@@ -117,6 +119,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         contentPane.add(TimelineFront);
         contentPane.add(keylistenObj);
         contentPane.add(player);
+        ait = new addItemTest(contentPane,c, 200, 0, 10, hView);
 
         //adding panel to JFrame and seting of window position and close operation
         getContentPane().add(contentPane);
@@ -126,7 +129,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         setVisible(true);
 
         ticker = new Ticker(this, 20); //default: 20 ms
-        
+
         out("Player Stats:\nPlayerX: " + PlayerX + "\tPlayerY: " + PlayerY + "\nPlayer size: " + PlayerHeight);
         System.out.println("E O C");
     }
