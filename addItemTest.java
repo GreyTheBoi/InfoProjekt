@@ -43,7 +43,7 @@ public class addItemTest extends JFrame implements PartView, View {
 
         particle = new JPanel(null);
         particle.setBounds(startX,startY,width,height);
-        particle.setBackground(new Color(255,255,255));
+        particle.setBackground(new Color(0,0,0));
         particle.setForeground(new Color(0,0,0));
         particle.setEnabled(true);
         particle.setFont(new Font("sansserif",0,12));

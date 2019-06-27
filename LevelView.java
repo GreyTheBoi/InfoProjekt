@@ -129,11 +129,13 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         setVisible(true);
 
         ticker = new Ticker(this, 20); //default: 20 ms
+        musik = new AudioPlayer("dark_cat_irene.wav");
+        musik.start();
 
         out("Player Stats:\nPlayerX: " + PlayerX + "\tPlayerY: " + PlayerY + "\nPlayer size: " + PlayerHeight);
         System.out.println("E O C");
     }
-
+    
     //base funktionen
     /**
      * Controller getter

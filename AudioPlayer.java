@@ -1,21 +1,7 @@
-
-// This example is from the book _Java AWT Reference_ by John Zukowski.
-// Written by John Zukowski.  Copyright (c) 1997 O'Reilly & Associates.
-// You may study, use, modify, and distribute this example for any purpose.
-// This example is provided WITHOUT WARRANTY either expressed or
-import java.io.FileInputStream;
-import java.net.URL;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 /**
  * Write a description of class Music here.
  *
- * @author Nicolas Lisgaras
+ * @author /
  * @version 25.06.19
  */
 // Java program to play an Audio 
@@ -39,21 +25,32 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author www.codejava.net
  *
  */
-public class AudioPlayer implements LineListener{
+public class AudioPlayer implements LineListener,Runnable {
 
     /**
      * this flag indicates whether the playback completes or not.
      */
     boolean playCompleted;
+    File audioFile;
+    String path;
+
+    private Thread t;
+    private String threadName;
 
     /**
      * Play a given audio file.
      * @param audioFilePath Path of the audio file.
      */
-    void play(String audioFilePath) {
-        File audioFile = new File("audio/" + audioFilePath);
+    AudioPlayer(String audioFilePath) {
+        path = audioFilePath;
+        threadName = audioFilePath + ".thread";
+        System.out.println("Creating " +  threadName );
+    }
 
+    public void run() {
         try {
+            audioFile = new File("audio/" + path);
+
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
 
             AudioFormat format = audioStream.getFormat();
@@ -67,7 +64,7 @@ public class AudioPlayer implements LineListener{
             audioClip.open(audioStream);
 
             audioClip.start();
-            
+
             while (!playCompleted) {
                 // wait for the playback completes
                 try {
@@ -89,7 +86,14 @@ public class AudioPlayer implements LineListener{
             System.out.println("Error playing the audio file.");
             ex.printStackTrace();
         }
+    }
 
+    public void start () {
+        System.out.println("Starting " +  threadName );
+        if (t == null) {
+            t = new Thread (this, threadName);
+            t.start ();
+        }
     }
 
     /**
@@ -108,11 +112,4 @@ public class AudioPlayer implements LineListener{
         }
 
     }
-
-    public static void main(String[] args) {
-        String audioFilePath = "E:/Test/Audio.wav";
-        AudioPlayer player = new AudioPlayer();
-        player.play(audioFilePath);
-    }
-
 }
