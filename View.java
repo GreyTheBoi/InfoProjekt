@@ -13,4 +13,5 @@ interface View
     //base funktionen
     Controller getController();
     void setController(Controller nc);
+    int getTick();
 }

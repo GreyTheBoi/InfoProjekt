@@ -39,6 +39,10 @@ class SpielerView implements View
         
     }
     
+    public int getTick(){
+        return -1;
+    }
+    
     public void update(){
         
     }

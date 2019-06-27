@@ -44,6 +44,8 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
     private Ticker ticker;
     private AudioPlayer musik;
+    //private MapDevHelper dh; //obsolete
+    private MapDevHelper MapDevHelper;
 
     //Constructor 
     public LevelView(){
@@ -114,12 +116,15 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         keylistenObj.addKeyListener(this);
         keylistenObj.setFocusable(true);
 
+        //adding external components to contentPane panel
+        ait = new addItemTest(contentPane,c, 200, 0, 10, hView, 2000, 125);
+        //dh = new MapDevHelper(contentPane,c,this);
+        
         //adding components to contentPane panel
         contentPane.add(TimelineBackground);
         contentPane.add(TimelineFront);
         contentPane.add(keylistenObj);
         contentPane.add(player);
-        ait = new addItemTest(contentPane,c, 200, 0, 10, hView);
 
         //adding panel to JFrame and seting of window position and close operation
         getContentPane().add(contentPane);
@@ -131,6 +136,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         ticker = new Ticker(this, 20); //default: 20 ms
         musik = new AudioPlayer("dark_cat_irene.wav");
         musik.start();
+        MapDevHelper = new MapDevHelper(this);
 
         out("Player Stats:\nPlayerX: " + PlayerX + "\tPlayerY: " + PlayerY + "\nPlayer size: " + PlayerHeight);
         System.out.println("E O C");
@@ -157,6 +163,10 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
      */
     public String getWindowInput(){
         return input;
+    }
+    
+    public int getTick(){
+        return ticker.getTick();
     }
 
     //listeners and interaction

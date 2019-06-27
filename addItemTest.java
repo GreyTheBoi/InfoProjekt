@@ -22,20 +22,31 @@ public class addItemTest extends JFrame implements PartView, View {
     int partCount;
     Controller c;
     String input;
-    
-    int startX;
-    int startY;
-    int width;
-    int height;
+    int delay;
+    boolean collision;
+
+    public int startX;
+    public int startY;
+    public int width;
+    public int height;
+    public int spd; //speed (in ms) 
+
+    Ticker tick;
+    int frame;
 
     //Constructor 
-    public addItemTest(JPanel contentPane, Controller nC, int nX, int nY, int w, int h){
+    public addItemTest(JPanel contentPane, Controller nC, int nX, int nY, int w, int h, int nDelay, int maxOpacity){
+        frame = 0;
+        collision = false;
 
         c = nC;
         death = 20;
         partCount = 1;
         input = "N/A";
-        
+        delay = nDelay;
+        death = 500; //(default: 1000ms)
+        spd = 20; //(default:20ms)
+
         startX = nX;
         startY = nY;
         width = w;
@@ -43,7 +54,7 @@ public class addItemTest extends JFrame implements PartView, View {
 
         particle = new JPanel(null);
         particle.setBounds(startX,startY,width,height);
-        particle.setBackground(new Color(0,0,0));
+        particle.setBackground(new Color(255,255,255));
         particle.setForeground(new Color(0,0,0));
         particle.setEnabled(true);
         particle.setFont(new Font("sansserif",0,12));
@@ -51,6 +62,8 @@ public class addItemTest extends JFrame implements PartView, View {
 
         //adding components to contentPane panel
         contentPane.add(particle);
+
+        tick = new Ticker(this,20);
     }
 
     public int getDeath(){
@@ -70,8 +83,44 @@ public class addItemTest extends JFrame implements PartView, View {
         c = nC;
     }
 
+    public boolean getCollision(){
+        return collision;
+    }
+    
+    public int getTick(){
+        return -1;
+    }
+    
     public void update(){
+        frame = frame +  spd;
+        if(frame <= (delay/2)){ //up
+            double x;
+            double y;
+            y = (double)frame/delay;
+            x = y * 255;
+            particle.setBackground(new Color((int)x,(int)x,(int)x));
+            System.out.println("up " + frame);
+        }
+        if(frame >= delay && frame <= delay+death){ //keep
+            particle.setForeground(new Color(255,0,0));
+            particle.setBackground(new Color(255,0,0));
+            collision = true;
+            System.out.println("keep " + frame);
+        }
+        if(frame >= delay+death && frame <= delay+death*2){ //fade
+            double x = frame-delay-death;
+            double y = death;
+            double z = (double)x/y;
+            double result = 255-z*255;
+            particle.setBackground(new Color((int)result,0,0)); // notiz: ICH HASSE DOUBLES IN JAVA
+            collision = false;
+            System.out.println("x "+x+" y "+y+" z "+z+" result "+(int)result);
+        }
+        else{
+            startX = startY = width = height = -20;
+        }
         
+        particle.setBounds(startX,startY,width,height);
     }
 
     public String getWindowInput(){

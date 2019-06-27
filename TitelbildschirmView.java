@@ -242,7 +242,11 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     public String getWindowInput(){
         return input;
     }
-
+    
+    public int getTick(){
+        return -1;
+    }
+    
     public boolean getKeyState(){
         return keyPressed;
     }

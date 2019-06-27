@@ -32,6 +32,10 @@ class PartViewTemp implements PartView, View
     public String getWindowInput(){
         return input;
     }
+    
+    public int getTick(){
+        return -1;
+    }
 
     /**
      * Constructor for objects of class PartViewTemp

@@ -34,6 +34,10 @@ class TimelineView implements View
         
     }
     
+    public int getTick(){
+        return -1;
+    }
+    
     /**
      * Constructor for objects of class TimelineView
      */
