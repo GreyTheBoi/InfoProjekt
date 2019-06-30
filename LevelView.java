@@ -1,10 +1,3 @@
-/**
- *Text genereted by Simple GUI Extension for BlueJ
- * 
- * @author Nicolas Lisgaras 
- * @version 20.06.19
- * 
- */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,6 +11,14 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import javax.swing.border.Border;
 import javax.swing.*;
+
+/**
+ * Text genereted by Simple GUI Extension for BlueJ
+ * 
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
+ * 
+ */
 
 public class LevelView extends JFrame implements View, KeyListener, ActionListener{
     Controller c; // controller
@@ -37,8 +38,6 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
     private boolean wPressed, aPressed, sPressed, dPressed;
 
-    private JPanel TimelineBackground;
-    private JPanel TimelineFront;
     private JPanel player;
     private JButton keylistenObj; // >:| keine ahnung whyyyyyyyyyyyyyyy (bitte rausnehmen vor abgabe thx)
 
@@ -46,6 +45,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     private AudioPlayer musik;
     //private MapDevHelper dh; //obsolete
     private MapDevHelper MapDevHelper;
+    private TimelineView Timeline;
 
     //Constructor 
     public LevelView(){
@@ -73,26 +73,6 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         contentPane.setBackground(new Color(0,0,0));
         contentPane.addKeyListener(this);
 
-        TimelineBackground = new JPanel(null);
-        TimelineBackground.setBorder(BorderFactory.createEtchedBorder(1));
-        TimelineBackground.setBounds(25,25,450,25);
-        TimelineBackground.setBackground(new Color(255,255,255));
-        TimelineBackground.setForeground(new Color(255,255,255));
-        TimelineBackground.setEnabled(true);
-        TimelineBackground.setFont(new Font("sansserif",0,12));
-        TimelineBackground.setVisible(true);
-        TimelineBackground.addKeyListener(this);
-
-        TimelineFront = new JPanel(null);
-        TimelineFront.setBorder(BorderFactory.createEtchedBorder(1));
-        TimelineFront.setBounds(25,25,450,25);
-        TimelineFront.setBackground(new Color(216,28,131));
-        TimelineFront.setForeground(new Color(0,0,0));
-        TimelineFront.setEnabled(true);
-        TimelineFront.setFont(new Font("sansserif",0,12));
-        TimelineFront.setVisible(true);
-        TimelineFront.addKeyListener(this);
-
         player = new JPanel(null);
         player.setBorder(BorderFactory.createEtchedBorder(1));
         player.setBounds(250,200,PlayerWidth, PlayerHeight);
@@ -118,11 +98,10 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
         //adding external components to contentPane panel
         ait = new addItemTest(contentPane,c, 200, 0, 10, hView, 2000, 125);
-        //dh = new MapDevHelper(contentPane,c,this);
+        MapDevHelper = new MapDevHelper(this);
+        Timeline = new TimelineView(contentPane);
         
         //adding components to contentPane panel
-        contentPane.add(TimelineBackground);
-        contentPane.add(TimelineFront);
         contentPane.add(keylistenObj);
         contentPane.add(player);
 
@@ -132,11 +111,11 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
-
+        
+        //external threads
         ticker = new Ticker(this, 20); //default: 20 ms
         musik = new AudioPlayer("dark_cat_irene.wav");
         musik.start();
-        MapDevHelper = new MapDevHelper(this);
 
         out("Player Stats:\nPlayerX: " + PlayerX + "\tPlayerY: " + PlayerY + "\nPlayer size: " + PlayerHeight);
         System.out.println("E O C");
