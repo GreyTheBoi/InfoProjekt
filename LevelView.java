@@ -69,10 +69,10 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         keylistenObj.setFocusable(true);
 
         //adding external components to contentPane panel
-        ait = new addItemTest(contentPane,c, 200, 0, 10, hView, 2000, 125);
         MapDevHelper = new MapDevHelper(this);
         Timeline = new TimelineView(contentPane);
         Player = new PlayerView(contentPane,this);
+        ait = new addItemTest(contentPane,c, 200, 100, 10, hView, 2000, 255);
         
         //adding components to contentPane panel
         contentPane.add(keylistenObj);

@@ -55,7 +55,7 @@ public class addItemTest extends JFrame implements PartView, View {
         particle = new JPanel(null);
         particle.setBounds(startX,startY,width,height);
         particle.setBackground(new Color(255,255,255));
-        particle.setForeground(new Color(0,0,0));
+        particle.setForeground(new Color(255,255,255));
         particle.setEnabled(true);
         particle.setFont(new Font("sansserif",0,12));
         particle.setVisible(true);
@@ -86,12 +86,13 @@ public class addItemTest extends JFrame implements PartView, View {
     public boolean getCollision(){
         return collision;
     }
-    
+
     public int getTick(){
         return -1;
     }
-    
+
     public void update(){
+        particle.setVisible(true);
         frame = frame +  spd;
         if(frame <= (delay/2)){ //up
             double x;
@@ -99,12 +100,14 @@ public class addItemTest extends JFrame implements PartView, View {
             y = (double)frame/delay;
             x = y * 255;
             particle.setBackground(new Color((int)x,(int)x,(int)x));
+            System.out.println(particle.getBackground());
             System.out.println("up " + frame);
         }
         if(frame >= delay && frame <= delay+death){ //keep
             particle.setForeground(new Color(255,0,0));
             particle.setBackground(new Color(255,0,0));
             collision = true;
+            System.out.println(particle.getBackground());
             System.out.println("keep " + frame);
         }
         if(frame >= delay+death && frame <= delay+death*2){ //fade
@@ -114,12 +117,17 @@ public class addItemTest extends JFrame implements PartView, View {
             double result = 255-z*255;
             particle.setBackground(new Color((int)result,0,0)); // notiz: ICH HASSE DOUBLES IN JAVA
             collision = false;
+            System.out.println(particle.getBackground());
             System.out.println("x "+x+" y "+y+" z "+z+" result "+(int)result);
         }
-        else{
+        if(frame == delay+death*2){
+            System.out.println("called out: " + getClass() + " at frame: "+frame);
             startX = startY = width = height = -20;
         }
-        
+        if(frame >= delay+death*2){
+            startX = startY = width = height = -20;
+        }
+
         particle.setBounds(startX,startY,width,height);
     }
 

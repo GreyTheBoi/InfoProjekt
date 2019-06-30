@@ -33,7 +33,7 @@ public class Ticker
             }
         };
 
-        timer = new Timer("Timer");
+        timer = new Timer("Timer@"+v.getClass());
         timer.scheduleAtFixedRate(task, ndt, ndt); // task, first frame, tick delta
     }
     
