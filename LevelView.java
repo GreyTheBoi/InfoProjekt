@@ -24,21 +24,12 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     Controller c; // controller
     addItemTest ait;
 
-    private int PlayerX;
-    private int PlayerY;
-    private int PlayerWidth;
-    private int PlayerHeight;
-    private int hView;// fenster weite
-    private int wView;// fenster höhe
-
-    private int vspeed;
-    private int hspeed;
-    private int speed;
+    public int hView;// fenster weite
+    public int wView;// fenster höhe
     private String input;
 
     private boolean wPressed, aPressed, sPressed, dPressed;
 
-    private JPanel player;
     private JButton keylistenObj; // >:| keine ahnung whyyyyyyyyyyyyyyy (bitte rausnehmen vor abgabe thx)
 
     private Ticker ticker;
@@ -46,19 +37,12 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     //private MapDevHelper dh; //obsolete
     private MapDevHelper MapDevHelper;
     private TimelineView Timeline;
+    private PlayerView Player;
 
     //Constructor 
     public LevelView(){
-        PlayerX = 250;
-        PlayerY = 200;
         hView = 400;
         wView = 500;
-        PlayerWidth = 20;
-        PlayerHeight = 20; //Muss ein Quadrat sein
-
-        vspeed = 0;
-        hspeed = 0;
-        speed = 8;
 
         input = "N/A";
 
@@ -72,18 +56,6 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         contentPane.setPreferredSize(new Dimension(500,400));
         contentPane.setBackground(new Color(0,0,0));
         contentPane.addKeyListener(this);
-
-        player = new JPanel(null);
-        player.setBorder(BorderFactory.createEtchedBorder(1));
-        player.setBounds(250,200,PlayerWidth, PlayerHeight);
-        player.setBackground(new Color(255,255,255));
-        player.setForeground(new Color(255,255,255));
-        player.setEnabled(true);
-        player.setFont(new Font("sansserif",0,12));
-        player.setLocation(PlayerX,PlayerY);
-        player.setVisible(true);
-        player.addKeyListener(this);
-        player.setFocusable(true);
 
         keylistenObj = new JButton("");
         keylistenObj.setBorder(BorderFactory.createEtchedBorder(1));
@@ -100,10 +72,10 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         ait = new addItemTest(contentPane,c, 200, 0, 10, hView, 2000, 125);
         MapDevHelper = new MapDevHelper(this);
         Timeline = new TimelineView(contentPane);
+        Player = new PlayerView(contentPane,this);
         
         //adding components to contentPane panel
         contentPane.add(keylistenObj);
-        contentPane.add(player);
 
         //adding panel to JFrame and seting of window position and close operation
         getContentPane().add(contentPane);
@@ -117,7 +89,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         musik = new AudioPlayer("dark_cat_irene.wav");
         musik.start();
 
-        out("Player Stats:\nPlayerX: " + PlayerX + "\tPlayerY: " + PlayerY + "\nPlayer size: " + PlayerHeight);
+        out("Player Stats:\nPlayerX: " + Player.PlayerX + "\tPlayerY: " + Player.PlayerY + "\nPlayer size: " + Player.PlayerHeight);
         System.out.println("E O C");
     }
     
@@ -227,33 +199,22 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
      * Per tick (vom ticker) wird der Inhalt dieser Funktion ausgeführt
      */
     public void update(){        
-        player.setVisible(true);
-        vspeed = 0;
-        hspeed = 0;
-
         if(wPressed == true){
-            vspeed = -speed;
+            Player.vspeed = -Player.speed;
         }
 
         if(aPressed == true){
-            hspeed = -speed;
+            Player.hspeed = -Player.speed;
         }
 
         if(sPressed == true){
-            vspeed = speed;
+            Player.vspeed = Player.speed;
         }
 
         if(dPressed == true){
-            hspeed = speed;
+            Player.hspeed = Player.speed;
         }
-
-        PlayerX += hspeed;
-        PlayerY += vspeed;
-        player.setLocation(PlayerX, PlayerY);
-
-        if(PlayerX > wView - PlayerWidth){ PlayerX = wView - PlayerWidth;}
-        if(PlayerY > hView - PlayerHeight){ PlayerY = hView - PlayerHeight;}
-        if(PlayerX < 0){ PlayerX = 0;}
-        if(PlayerY < 0){ PlayerY = 0;}
+        
+        Player.update();
     }
 }

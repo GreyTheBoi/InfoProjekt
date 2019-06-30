@@ -57,6 +57,8 @@ class TimelineView extends JFrame implements View
         //adding components to contentPane panel
         contentPane.add(TimelineBackground);
         contentPane.add(TimelineFront);
+        
+        this.setLocation(0, 0);
     }
     
     //base funktionen
