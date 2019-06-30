@@ -12,9 +12,11 @@ public class PlayerController
 
     public int processInput(String i){
         switch(i){
-            
+            case "w":
+                return -10;
+            default:
+                return -1;
         }
-        return 0;//BITTE ENTFERNEN WENN FERTIG
     }
     
     public void setModel(Model nm){
