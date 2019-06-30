@@ -1,16 +1,20 @@
+
 /**
- * 
- * @author Nicolas Lisgaras 
- * @version 20.06.19
- * 
+ * Write a description of class PlayerController here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
  */
-public class MenuController implements Controller
+public class PlayerController
 {
     View v;
     Model m;
-    
+
     public int processInput(String i){
-        return -1;
+        switch(i){
+            
+        }
+        return 0;//BITTE ENTFERNEN WENN FERTIG
     }
     
     public void setModel(Model nm){
@@ -28,12 +32,12 @@ public class MenuController implements Controller
     public View getView(){
         return v;
     }
-
+    
     /**
-     * Constructor for objects of class MenuController
+     * Constructor for objects of class LevelController
      */
-    public MenuController()
+    PlayerController ()
     {
-        
+
     }
 }

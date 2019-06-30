@@ -9,6 +9,10 @@ class LevelController implements Controller
     View v;
     Model m;
 
+    public int processInput(String i){
+        return -1;
+    }
+    
     public void setModel(Model nm){
         m = nm;
     }
@@ -24,11 +28,7 @@ class LevelController implements Controller
     public View getView(){
         return v;
     }
-
-    public void processInput(){
-        
-    }
-
+    
     /**
      * Constructor for objects of class LevelController
      */

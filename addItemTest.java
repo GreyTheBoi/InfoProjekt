@@ -25,11 +25,11 @@ public class addItemTest extends JFrame implements PartView, View {
     int delay;
     boolean collision;
 
-    public int startX;
-    public int startY;
-    public int width;
-    public int height;
-    public int spd; //speed (in ms) 
+    private int startX;
+    private int startY;
+    private int width;
+    private int height;
+    private int spd; //speed (in ms) 
 
     Ticker tick;
     int frame;
@@ -88,8 +88,15 @@ public class addItemTest extends JFrame implements PartView, View {
     }
 
     public int getTick(){
-        return -1;
+        return frame;
     }
+    
+    public int getWidth(){return width;}
+    public int getHeight(){return height;}
+    public int getX(){return startX;}
+    public int getY(){return startY;}
+    public int getSpeed(){return spd;}
+    public int getFrame(){return frame;}
 
     public void update(){
         particle.setVisible(true);

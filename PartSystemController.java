@@ -1,10 +1,11 @@
+
 /**
- * 
- * @author Nicolas Lisgaras 
- * @version 20.06.19
- * 
+ * Write a description of class PartSystemController here.
+ *
+ * @author Nicolas Lisgaras
+ * @version 30.06.19
  */
-public class MenuController implements Controller
+public class PartSystemController implements Controller
 {
     View v;
     Model m;
@@ -12,7 +13,7 @@ public class MenuController implements Controller
     public int processInput(String i){
         return -1;
     }
-    
+
     public void setModel(Model nm){
         m = nm;
     }
@@ -30,10 +31,11 @@ public class MenuController implements Controller
     }
 
     /**
-     * Constructor for objects of class MenuController
+     * Constructor for objects of class PartSystemController
      */
-    public MenuController()
+    public PartSystemController()
     {
-        
+
     }
+    
 }

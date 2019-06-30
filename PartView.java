@@ -11,8 +11,16 @@ interface PartView
 
     int getPartCount();
 
-    //base funktionen
-    Controller getController();
-
-    void setController(Controller nc);
+    public int getWidth();
+    
+    public int getHeight();
+    
+    public int getX();
+    
+    public int getY();
+    
+    public int getSpeed();
+    
+    public int getFrame();
+    
 }

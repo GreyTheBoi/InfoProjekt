@@ -10,8 +10,8 @@ class PartController implements Controller
     View v;
     Model m;
     
-    public void processInput(){
-        
+    public int processInput(String i){
+        return -1;
     }
     
     public void setModel(Model nm){
