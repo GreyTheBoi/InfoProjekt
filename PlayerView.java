@@ -43,6 +43,7 @@ public class PlayerView extends JFrame implements View{
     {
         contentPane = NcontentPane;
         level = nLevel;
+        c = new PlayerController();
 
         PlayerX = 250;
         PlayerY = 200;

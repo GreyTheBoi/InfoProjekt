@@ -5,17 +5,19 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class PlayerController
+public class PlayerController implements Controller
 {
     View v;
     Model m;
 
     public int processInput(String i){
+        System.out.println("started process input @"+getClass());
         switch(i){
             case "w":
+                System.out.println("got w");
                 return -10;
             default:
-                return -1;
+                return 0;
         }
     }
     

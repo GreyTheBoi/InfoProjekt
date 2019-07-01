@@ -200,19 +200,19 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
      */
     public void update(){        
         if(wPressed == true){
-            Player.vspeed = Player.c.processInput("w");
+            Player.vspeed = Player.getController().processInput("w");
         }
 
         if(aPressed == true){
-            Player.hspeed = Player.c.processInput("a");
+            Player.hspeed = Player.getController().processInput("a");
         }
 
         if(sPressed == true){
-            Player.vspeed = Player.c.processInput("s");
+            Player.vspeed = Player.getController().processInput("s");
         }
 
         if(dPressed == true){
-            Player.hspeed = Player.c.processInput("d");
+            Player.hspeed = Player.getController().processInput("d");
         }
         
         Player.update();
