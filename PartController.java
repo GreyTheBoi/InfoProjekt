@@ -9,11 +9,11 @@ class PartController implements Controller
 {
     View v;
     Model m;
-    
+
     public int processInput(String i){
         return -1;
     }
-    
+
     public void setModel(Model nm){
         m = nm;
     }
@@ -22,10 +22,17 @@ class PartController implements Controller
         return m;
     }
 
+    /**
+     * View setter
+     * @param neuen view
+     */
     public void setView(View nv){
         v = nv;
     }
 
+    /**
+     * View getter
+     */
     public View getView(){
         return v;
     }
