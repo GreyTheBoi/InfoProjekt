@@ -9,7 +9,7 @@ public class PlayerController implements Controller
 {
     View v;
     Model m;
-
+    private boolean wPressed, aPressed, sPressed, dPressed;
     public int processInput(String i){
         System.out.println("started process input @"+getClass());
         switch(i){
@@ -37,6 +37,34 @@ public class PlayerController implements Controller
         return v;
     }
     
+    public int getSpeedw(){
+        if (wPressed = true){
+            return 10;
+        }
+        return 0;
+    }
+    
+    public int getSpeeda(){
+        if (aPressed = true){
+            return -10;
+        }
+        return 0;
+    }
+    
+    public int getSpeeds(){
+        if (sPressed = true){
+            return -10;
+        }
+        return 0;
+    }
+    
+    public int getSpeedd(){
+        if (dPressed = true){
+            return 10;
+        }
+        return 0;
+    }
+    
     /**
      * Constructor for objects of class LevelController
      */
@@ -44,4 +72,5 @@ public class PlayerController implements Controller
     {
 
     }
+   
 }
