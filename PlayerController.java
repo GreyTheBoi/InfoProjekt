@@ -11,16 +11,25 @@ public class PlayerController implements Controller
     Model m;
 
     public int processInput(String i){
-        System.out.println("started process input @"+getClass());
+        // System.out.println("started process input @"+getClass());
         switch(i){
             case "w":
-                System.out.println("got w");
+                // System.out.println("got w");
                 return -10;
+            case "a":
+                // System.out.println("got a");
+                return -10;
+            case "s":
+                // System.out.println("got s");
+                return 10;
+            case "d":
+                // System.out.println("got d");
+                return 10;
             default:
                 return 0;
         }
     }
-    
+
     public void setModel(Model nm){
         m = nm;
     }
@@ -36,7 +45,7 @@ public class PlayerController implements Controller
     public View getView(){
         return v;
     }
-    
+
     /**
      * Constructor for objects of class LevelController
      */

@@ -122,7 +122,7 @@ public class addItemTest extends JFrame implements PartView, View {
             double y = death;
             double z = (double)x/y;
             double result = 255-z*255;
-            particle.setBackground(new Color((int)result,0,0)); // notiz: ICH HASSE DOUBLES IN JAVA
+            particle.setBackground(new Color((int)result,(int)result,(int)result)); // notiz: ICH HASSE DOUBLES IN JAVA
             collision = false;
             System.out.println(particle.getBackground());
             System.out.println("x "+x+" y "+y+" z "+z+" result "+(int)result);
