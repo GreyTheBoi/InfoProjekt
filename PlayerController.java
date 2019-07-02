@@ -9,7 +9,7 @@ public class PlayerController implements Controller
 {
     View v;
     Model m;
-
+    private boolean wPressed, aPressed, sPressed, dPressed;
     public int processInput(String i){
         // System.out.println("started process input @"+getClass());
         switch(i){
@@ -45,7 +45,7 @@ public class PlayerController implements Controller
     public View getView(){
         return v;
     }
-
+    
     /**
      * Constructor for objects of class LevelController
      */
@@ -53,4 +53,5 @@ public class PlayerController implements Controller
     {
 
     }
+   
 }
