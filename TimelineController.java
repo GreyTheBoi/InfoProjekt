@@ -1,6 +1,6 @@
 /**
  * 
- * @author Nicolas Lisgaras 
+ * @author Nicolas Lisgaras, Nikolas Grafwallner 
  * @version 20.06.19
  * 
  */
@@ -34,6 +34,6 @@ class TimelineController implements Controller
      */
     TimelineController ()
     {
-
+        
     }
 }

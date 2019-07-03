@@ -14,4 +14,5 @@ interface View
     Controller getController();
     void setController(Controller nc);
     int getTick();
+    int getTickDelta();
 }

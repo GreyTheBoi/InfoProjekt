@@ -15,16 +15,18 @@ import javax.swing.*;
 /**
  * Timeline (external)
  * 
- * @author Nicolas Lisgaras 
+ * @author Nicolas Lisgaras, Nikolas Grafwallner
  * @version 20.06.19
  */
 class TimelineView extends JFrame implements View
 {
     
     Controller c;
+    View level;
     
     String input;
     boolean keyPressed;
+    int time; // länge des levels
     
     private JPanel TimelineBackground;
     private JPanel TimelineFront;
@@ -32,9 +34,10 @@ class TimelineView extends JFrame implements View
     /**
      * Constructor for objects of class TimelineView
      */
-    TimelineView (JPanel contentPane)
+    TimelineView (JPanel contentPane, View v)
     {
         c = new TimelineController();
+        level = v;
         
         TimelineBackground = new JPanel(null);
         TimelineBackground.setBorder(BorderFactory.createEtchedBorder(1));
@@ -79,11 +82,21 @@ class TimelineView extends JFrame implements View
         return keyPressed;
     }
     
+    public int processFrames(int frameRate, int length){
+        int fps;
+        fps = 1000/frameRate;
+        return length*fps;
+    }
+    
     public void update(){
-        
+        processFrames(level.getTick(), 194);
     }
     
     public int getTick(){
+        return -1;
+    }
+    
+    public int getTickDelta(){
         return -1;
     }
 }

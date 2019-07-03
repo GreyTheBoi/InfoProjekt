@@ -248,7 +248,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     }
     
     public boolean getKeyState(){
-        return keyPressed;
+        return keyPressed; 
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -283,6 +283,10 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     
     public void update(){
         
+    }
+    
+    public int getTickDelta(){
+        return -1;
     }
     
 }

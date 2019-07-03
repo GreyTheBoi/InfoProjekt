@@ -2,7 +2,7 @@
 /**
  * Write a description of class PlayerController here.
  *
- * @author (your name)
+ * @author Nikolas Grafwallner
  * @version (a version number or a date)
  */
 public class PlayerController implements Controller

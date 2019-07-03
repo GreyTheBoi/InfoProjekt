@@ -32,12 +32,14 @@ public class addItemTest extends JFrame implements PartView, View {
     private int spd; //speed (in ms) 
 
     Ticker tick;
+    int delta;
     int frame;
 
     //Constructor 
     public addItemTest(JPanel contentPane, Controller nC, int nX, int nY, int w, int h, int nDelay, int maxOpacity){
         frame = 0;
         collision = false;
+        delta = 20;
 
         c = nC;
         death = 20;
@@ -63,7 +65,7 @@ public class addItemTest extends JFrame implements PartView, View {
         //adding components to contentPane panel
         contentPane.add(particle);
 
-        tick = new Ticker(this,20);
+        tick = new Ticker(this,delta);
     }
 
     public int getDeath(){
@@ -140,5 +142,9 @@ public class addItemTest extends JFrame implements PartView, View {
 
     public String getWindowInput(){
         return input;
+    }
+    
+    public int getTickDelta(){
+        return delta;
     }
 }

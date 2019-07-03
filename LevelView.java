@@ -33,6 +33,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     private JButton keylistenObj; // >:| keine ahnung whyyyyyyyyyyyyyyy (bitte rausnehmen vor abgabe thx)
 
     private Ticker ticker;
+    private int tick;
     private AudioPlayer musik;
     //private MapDevHelper dh; //obsolete
     private MapDevHelper MapDevHelper;
@@ -45,6 +46,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         wView = 500;
 
         input = "N/A";
+        tick = 20;
 
         wPressed = aPressed = sPressed = dPressed = false;
 
@@ -70,7 +72,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
 
         //adding external components to contentPane panel
         MapDevHelper = new MapDevHelper(this);
-        Timeline = new TimelineView(contentPane);
+        Timeline = new TimelineView(contentPane,this);
         Player = new PlayerView(contentPane,this);
         ait = new addItemTest(contentPane,c, 200, 100, 10, hView, 2000, 255);
         
@@ -85,7 +87,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         setVisible(true);
         
         //external threads
-        ticker = new Ticker(this, 20); //default: 20 ms
+        ticker = new Ticker(this, tick); //default: 20 ms
         musik = new AudioPlayer("dark_cat_irene.wav");
         musik.start();
 
@@ -216,5 +218,11 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         }
         
         Player.update();
+        
+        Timeline.update();
+    }
+    
+    public int getTickDelta(){
+        return tick;
     }
 }
