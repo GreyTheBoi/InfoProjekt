@@ -49,7 +49,7 @@ public class LevelDatabase
 
     private Connection connect() {
         // SQLite connection string
-        String url = "jdbc:sqlite:C://sqlite/db/test.db";
+        String url = prefix+DBname+DBsuffix;
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(url);
@@ -81,7 +81,7 @@ public class LevelDatabase
     /**
      * http://www.sqlitetutorial.net/sqlite-java/create-table/
      */
-    public static void createNewTable(String tabname) {
+    public void createNewTable(String tabname) {
         // SQLite connection string
         String url = prefix+DBname+DBsuffix;
 
@@ -143,20 +143,20 @@ public class LevelDatabase
         try (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();
         ResultSet resset    = stmt.executeQuery(sql)){
-
+            System.out.println("frame,\t type,\t death,\t posX,\t posY,\t width,\t height, delay,\t opacity,ID");
             // loop through the result set
             while (resset.next()) {
-                System.out.println(
-                    resset.getInt("frame")+"\t"+
-                    resset.getString("type")+"\t"+
-                    resset.getInt("death")+"\t"+
-                    resset.getInt("posX")+"\t"+
-                    resset.getInt("posY")+"\t"+
-                    resset.getInt("width")+"\t"+
-                    resset.getInt("height")+"\t"+ 
-                    resset.getInt("delay")+"\t"+
-                    resset.getInt("opacity")+"\t"+
-                    resset.getInt("ID")+"\n"
+                System.out.print(
+                    "|"+resset.getInt("frame")+"\t"+
+                    "|"+resset.getString("type")+"\t"+
+                    "|"+resset.getInt("death")+"\t"+
+                    "|"+resset.getInt("posX")+"\t"+
+                    "|"+resset.getInt("posY")+"\t"+
+                    "|"+resset.getInt("width")+"\t"+
+                    "|"+resset.getInt("height")+"\t"+ 
+                    "|"+resset.getInt("delay")+"\t"+
+                    "|"+resset.getInt("opacity")+"\t"+
+                    "|"+resset.getInt("ID")+"\n"
                 );
             }
         } catch (SQLException e) {
