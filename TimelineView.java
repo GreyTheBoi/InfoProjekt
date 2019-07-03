@@ -26,7 +26,8 @@ class TimelineView extends JFrame implements View
     
     String input;
     boolean keyPressed;
-    int time; // länge des levels
+    int frame; // aktueller frame des levels
+    int length; // länge des levels
     
     private JPanel TimelineBackground;
     private JPanel TimelineFront;
@@ -38,12 +39,13 @@ class TimelineView extends JFrame implements View
     {
         c = new TimelineController();
         level = v;
+        length = 0;
         
         TimelineBackground = new JPanel(null);
         TimelineBackground.setBorder(BorderFactory.createEtchedBorder(1));
         TimelineBackground.setBounds(25,25,450,25);
-        TimelineBackground.setBackground(new Color(255,255,255));
-        TimelineBackground.setForeground(new Color(255,255,255));
+        TimelineBackground.setBackground(new Color(216,28,131));
+        TimelineBackground.setForeground(new Color(216,28,131));
         TimelineBackground.setEnabled(true);
         TimelineBackground.setFont(new Font("sansserif",0,12));
         TimelineBackground.setVisible(true);
@@ -51,8 +53,8 @@ class TimelineView extends JFrame implements View
         TimelineFront = new JPanel(null);
         TimelineFront.setBorder(BorderFactory.createEtchedBorder(1));
         TimelineFront.setBounds(25,25,450,25);
-        TimelineFront.setBackground(new Color(216,28,131));
-        TimelineFront.setForeground(new Color(0,0,0));
+        TimelineFront.setBackground(new Color(255,255,255));
+        TimelineFront.setForeground(new Color(255,255,255));
         TimelineFront.setEnabled(true);
         TimelineFront.setFont(new Font("sansserif",0,12));
         TimelineFront.setVisible(true);
@@ -89,7 +91,11 @@ class TimelineView extends JFrame implements View
     }
     
     public void update(){
-        processFrames(level.getTick(), 194);
+        length = processFrames(level.getTickDelta(), 194);
+        frame = level.getTick();
+        double ratio = (double)frame/length;
+        double result = ratio * 450;
+        TimelineBackground.setBounds(25,25,(int)result,25);
     }
     
     public int getTick(){
