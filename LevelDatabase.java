@@ -14,10 +14,11 @@ public class LevelDatabase
 {
     public static String prefix = "jdbc:sqlite:";
     public static String DBsuffix = ".db";
-    public static String DBname = "";
+    public static String DBname = "Leveldata";
+    public static String Tname = "Level1";
 
-    LevelDatabase(String newDBname){
-        DBname = newDBname;
+    LevelDatabase(){
+        
     }
 
     /**
@@ -81,12 +82,12 @@ public class LevelDatabase
     /**
      * http://www.sqlitetutorial.net/sqlite-java/create-table/
      */
-    public void createNewTable(String tabname) {
+    public void createNewTable( ) {
         // SQLite connection string
         String url = prefix+DBname+DBsuffix;
 
         // SQL statement for creating a new table
-        String tabelle = "CREATE TABLE IF NOT EXISTS "+tabname+"(" 
+        String tabelle = "CREATE TABLE IF NOT EXISTS "+Tname+"(" 
             + " frame integer NOT NULL,\n"
             + " type String NOT NULL,\n"
             + " death integer NOT NULL,\n"
@@ -112,9 +113,9 @@ public class LevelDatabase
     /**
      * http://www.sqlitetutorial.net/sqlite-java/insert/
      */    
-    public void insert(int ID,int frame, String type, int death, int posX, int posY, int width ,int height, int delay, int opacity, String tabname)
+    public void insert(int ID,int frame, String type, int death, int posX, int posY, int width ,int height, int delay, int opacity)
     {
-        String sql = "INSERT INTO " + tabname + "(frame,type,death,posX,posY,width,height,delay,opacity,ID) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO " + Tname + "(frame,type,death,posX,posY,width,height,delay,opacity,ID) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         try (Connection conn = this.connect();
         PreparedStatement prepState = conn.prepareStatement(sql)) {
@@ -137,8 +138,8 @@ public class LevelDatabase
     /**
      * http://www.sqlitetutorial.net/sqlite-java/select/
      */
-    public void selectAll(String tabname){
-        String sql = "SELECT frame, type, death, posX, posY, width, height, delay, opacity, ID FROM " + tabname;
+    public void selectAll( ){
+        String sql = "SELECT frame, type, death, posX, posY, width, height, delay, opacity, ID FROM " + Tname;
 
         try (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();
@@ -167,8 +168,8 @@ public class LevelDatabase
     /**
      * http://www.sqlitetutorial.net/sqlite-java/update/
      */
-    public void update(int ID,int frame, String type, int death, int posX, int posY, int width ,int height, int delay, int opacity, String tabname) {
-        String sql = "UPDATE "+tabname+" SET name = ? , "
+    public void update(int ID,int frame, String type, int death, int posX, int posY, int width ,int height, int delay, int opacity) {
+        String sql = "UPDATE "+Tname+" SET name = ? , "
             + "type = ? "
             + "death = ? "
             + "posX = ? "
@@ -203,8 +204,8 @@ public class LevelDatabase
     /**
      * http://www.sqlitetutorial.net/sqlite-java/delete/
      */
-    public void delete(int ID,String tabname) {
-        String sql = "DELETE FROM " + tabname + " WHERE ID = ?";
+    public void delete(int ID) {
+        String sql = "DELETE FROM " + Tname + " WHERE ID = ?";
  
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
