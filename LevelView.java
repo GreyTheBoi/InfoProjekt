@@ -39,6 +39,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     private MapDevHelper MapDevHelper;
     private TimelineView Timeline;
     private PlayerView Player;
+    private JPanel contentPane;
 
     //Constructor 
     public LevelView(){
@@ -54,7 +55,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         setSize(wView,hView);
 
         //pane with null layout
-        JPanel contentPane = new JPanel(null);
+        contentPane = new JPanel(null);
         contentPane.setPreferredSize(new Dimension(500,400));
         contentPane.setBackground(new Color(0,0,0));
         contentPane.addKeyListener(this);
@@ -74,7 +75,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         MapDevHelper = new MapDevHelper(this);
         Timeline = new TimelineView(contentPane,this);
         Player = new PlayerView(contentPane,this);
-        ait = new addItemTest(contentPane,c, 200, 100, 10, hView, 2000, 255);
+        ait = new addItemTest(contentPane,c, 200, 0, 10, hView, 2000, 255);
         
         //adding components to contentPane panel
         contentPane.add(keylistenObj);
@@ -225,4 +226,9 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     public int getTickDelta(){
         return tick;
     }
+    
+    public JPanel getContentPane(){
+        return contentPane;
+    }
+    
 }

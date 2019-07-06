@@ -46,6 +46,10 @@ public class PlayerController implements Controller
         return v;
     }
     
+    public void update(){
+       
+    }
+    
     /**
      * Constructor for objects of class LevelController
      */

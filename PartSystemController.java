@@ -29,6 +29,10 @@ public class PartSystemController implements Controller
     public View getView(){
         return v;
     }
+    
+    public void update(){
+       
+    }
 
     /**
      * Constructor for objects of class PartSystemController

@@ -36,6 +36,10 @@ class PartController implements Controller
     public View getView(){
         return v;
     }
+    
+    public void update(){
+       
+    }
 
     /**
      * Constructor for objects of class PartController

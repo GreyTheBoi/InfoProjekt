@@ -18,7 +18,7 @@ public class LevelDatabase
     public static String Tname = "Level1";
 
     LevelDatabase(){
-        
+
     }
 
     /**
@@ -113,7 +113,7 @@ public class LevelDatabase
     /**
      * http://www.sqlitetutorial.net/sqlite-java/insert/
      */    
-    public void insert(int ID,int frame, String type, int death, int posX, int posY, int width ,int height, int delay, int opacity)
+    public void insert(int ID, int frame, String type, int death, int posX, int posY, int width, int height, int delay, int opacity)
     {
         String sql = "INSERT INTO " + Tname + "(frame,type,death,posX,posY,width,height,delay,opacity,ID) VALUES(?,?,?,?,?,?,?,?,?,?)";
 
@@ -164,7 +164,45 @@ public class LevelDatabase
             System.out.println(e.getMessage());
         }
     }
+
+    public String selectString(String select,int ID){
+        String sql = "SELECT "+select+", "+ID+" FROM " + Tname;
+        String IDs = Integer.toString(ID);
+
+        try (Connection conn = this.connect();
+        Statement stmt  = conn.createStatement();
+        ResultSet resset    = stmt.executeQuery(sql)){
+            // loop through the result set
+            while (resset.next()) {
+                System.out.println("result: String " + resset.getString(select));
+                return resset.getString(select);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return "error";
+        }
+        return"eof";
+    }
     
+    public int selectInt(String select,int ID){
+        String sql = "SELECT "+select+", "+ID+" FROM " + Tname;
+        String IDs = Integer.toString(ID);
+
+        try (Connection conn = this.connect();
+        Statement stmt  = conn.createStatement();
+        ResultSet resset    = stmt.executeQuery(sql)){
+            // loop through the result set
+            while (resset.next()) {
+                System.out.println("result: String " + resset.getInt(select));
+                return resset.getInt(select);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
+        return -1; 
+    }
+
     /**
      * http://www.sqlitetutorial.net/sqlite-java/update/
      */
@@ -200,24 +238,24 @@ public class LevelDatabase
             System.out.println(e.getMessage());
         }
     }
-    
+
     /**
      * http://www.sqlitetutorial.net/sqlite-java/delete/
      */
     public void delete(int ID) {
         String sql = "DELETE FROM " + Tname + " WHERE ID = ?";
- 
+
         try (Connection conn = this.connect();
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
- 
+        PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
             // set the corresponding param
             pstmt.setInt(1, ID);
             // execute the delete statement
             pstmt.executeUpdate();
- 
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
 }

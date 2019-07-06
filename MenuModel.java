@@ -8,6 +8,7 @@ public class MenuModel implements Model
 {
     Controller c;
     View v;
+    LevelDatabase lvlDB;
     
     public Controller getController(){
         return c;
@@ -23,6 +24,14 @@ public class MenuModel implements Model
 
     public void setView(View nv){
         v = nv;
+    }
+    
+    public String getString(String key, int ID){
+        return "N/A";
+    }
+    
+    public int getInt(int key, int ID){
+        return -1;
     }
 
     /**

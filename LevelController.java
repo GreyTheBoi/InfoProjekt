@@ -12,7 +12,7 @@ class LevelController implements Controller
     public int processInput(String i){
         return -1;
     }
-    
+
     public void setModel(Model nm){
         m = nm;
     }
@@ -28,12 +28,19 @@ class LevelController implements Controller
     public View getView(){
         return v;
     }
-    
+
+    // Nikolas Grafwallner
+    public void update(){
+        // if (m.getInt()
+    }
+
     /**
      * Constructor for objects of class LevelController
      */
     LevelController ()
     {
-
+        m = new LevelModel();
+        m.setController(this);
+        m.setView(v);
     }
 }

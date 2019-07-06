@@ -139,5 +139,9 @@ public class PlayerView extends JFrame implements View{
     public int getTickDelta(){
         return -1;
     }
+    
+    public JPanel getContentPane(){
+        return null;
+    }
 
 }

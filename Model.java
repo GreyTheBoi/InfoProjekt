@@ -12,4 +12,7 @@ interface Model
     
     View getView();
     void setView(View nv);
+    
+    String getString(String key, int ID);
+    int getInt(int key, int ID);
 }

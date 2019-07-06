@@ -14,4 +14,6 @@ interface Controller
     
     void setView(View nv);
     View getView();
+    
+    void update();
 }

@@ -135,6 +135,7 @@ public class addItemTest extends JFrame implements PartView, View {
         }
         if(frame >= delay+death*2){
             startX = startY = width = height = -20;
+            setVisible(false);
         }
 
         particle.setBounds(startX,startY,width,height);
@@ -146,5 +147,9 @@ public class addItemTest extends JFrame implements PartView, View {
     
     public int getTickDelta(){
         return delta;
+    }
+    
+    public JPanel getContentPane(){
+        return null;
     }
 }

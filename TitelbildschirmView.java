@@ -289,4 +289,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         return -1;
     }
     
+    public JPanel getContentPane(){
+        return null;
+    }
 }
