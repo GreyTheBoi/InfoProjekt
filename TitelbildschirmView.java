@@ -1,10 +1,3 @@
-/**
- *Text genereted by Simple GUI Extension for BlueJ
- * 
- * @author Nicolas Lisgaras 
- * @version 20.06.19
- * 
- */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,6 +11,14 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import javax.swing.border.Border;
 import javax.swing.*;
+
+/**
+ *Text genereted by Simple GUI Extension for BlueJ
+ * 
+ * @author Nicolas Lisgaras 
+ * @version 20.06.19
+ * 
+ */
 
 public class TitelbildschirmView extends JFrame implements View, KeyListener, ActionListener {
     Controller c;
