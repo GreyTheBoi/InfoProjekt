@@ -73,7 +73,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         IDField.setForeground(new Color(0,0,0));
         IDField.setEnabled(true);
         IDField.setFont(new Font("sansserif",0,12));
-        IDField.setText("new ID");
         IDField.setVisible(true);
 
         IDLabel = new JLabel();
@@ -128,7 +127,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         deathField.setForeground(new Color(0,0,0));
         deathField.setEnabled(true);
         deathField.setFont(new Font("sansserif",0,12));
-        deathField.setText("new death");
         deathField.setVisible(true);
 
         deathLabel = new JLabel();
@@ -146,7 +144,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         delayField.setForeground(new Color(0,0,0));
         delayField.setEnabled(true);
         delayField.setFont(new Font("sansserif",0,12));
-        delayField.setText("new delay");
         delayField.setVisible(true);
 
         delaylabel = new JLabel();
@@ -164,7 +161,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         frameField.setForeground(new Color(0,0,0));
         frameField.setEnabled(true);
         frameField.setFont(new Font("sansserif",0,12));
-        frameField.setText("new frame");
         frameField.setVisible(true);
 
         heightField = new JTextField();
@@ -173,7 +169,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         heightField.setForeground(new Color(0,0,0));
         heightField.setEnabled(true);
         heightField.setFont(new Font("sansserif",0,12));
-        heightField.setText("new height");
         heightField.setVisible(true);
 
         heightLabel = new JLabel();
@@ -191,7 +186,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         opacityField.setForeground(new Color(0,0,0));
         opacityField.setEnabled(true);
         opacityField.setFont(new Font("sansserif",0,12));
-        opacityField.setText("new opacity");
         opacityField.setVisible(true);
 
         opacityLabel = new JLabel();
@@ -218,7 +212,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         posYField.setForeground(new Color(0,0,0));
         posYField.setEnabled(true);
         posYField.setFont(new Font("sansserif",0,12));
-        posYField.setText("new Y");
         posYField.setVisible(true);
 
         posYLabel = new JLabel();
@@ -255,7 +248,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         widthField.setForeground(new Color(0,0,0));
         widthField.setEnabled(true);
         widthField.setFont(new Font("sansserif",0,12));
-        widthField.setText("new width");
         widthField.setVisible(true);
 
         widthLabel = new JLabel();
@@ -273,7 +265,6 @@ public class LevelMaker extends JFrame implements ActionListener{
         posXField.setForeground(new Color(0,0,0));
         posXField.setEnabled(true);
         posXField.setFont(new Font("sansserif",0,12));
-        posXField.setText("new X");
         posXField.setVisible(true);
 
         //adding components to contentPane panel
