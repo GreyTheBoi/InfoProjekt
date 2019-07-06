@@ -30,7 +30,11 @@ class PartModel implements Model
         return "N/A";
     }
     
-    public int getInt(int key, int ID){
+    public int getInt(String key, int ID){
+        return -1;
+    }
+    
+    public int getSize(){
         return -1;
     }
     

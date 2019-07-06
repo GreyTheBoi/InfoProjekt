@@ -143,21 +143,21 @@ public class LevelDatabase
 
         try (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();
-        ResultSet resset    = stmt.executeQuery(sql)){
+        ResultSet rs    = stmt.executeQuery(sql)){
             System.out.println("frame,\t type,\t death,\t posX,\t posY,\t width,\t height, delay,\t opacity,ID");
             // loop through the result set
-            while (resset.next()) {
+            while (rs.next()) {
                 System.out.print(
-                    "|"+resset.getInt("frame")+"\t"+
-                    "|"+resset.getString("type")+"\t"+
-                    "|"+resset.getInt("death")+"\t"+
-                    "|"+resset.getInt("posX")+"\t"+
-                    "|"+resset.getInt("posY")+"\t"+
-                    "|"+resset.getInt("width")+"\t"+
-                    "|"+resset.getInt("height")+"\t"+ 
-                    "|"+resset.getInt("delay")+"\t"+
-                    "|"+resset.getInt("opacity")+"\t"+
-                    "|"+resset.getInt("ID")+"\n"
+                    "|"+rs.getInt("frame")+"\t"+
+                    "|"+rs.getString("type")+"\t"+
+                    "|"+rs.getInt("death")+"\t"+
+                    "|"+rs.getInt("posX")+"\t"+
+                    "|"+rs.getInt("posY")+"\t"+
+                    "|"+rs.getInt("width")+"\t"+
+                    "|"+rs.getInt("height")+"\t"+ 
+                    "|"+rs.getInt("delay")+"\t"+
+                    "|"+rs.getInt("opacity")+"\t"+
+                    "|"+rs.getInt("ID")+"\n"
                 );
             }
         } catch (SQLException e) {
@@ -165,17 +165,35 @@ public class LevelDatabase
         }
     }
 
+    public int getSize(){
+        String sql = "SELECT frame, type, death, posX, posY, width, height, delay, opacity, ID FROM " + Tname;
+        int i = 0;
+
+        try (Connection conn = this.connect();
+        Statement stmt  = conn.createStatement();
+        ResultSet rs    = stmt.executeQuery(sql)){
+            // loop through the result set
+            while (rs.next()) {
+                i++;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return i;
+    }
+
     public String selectString(String select,int ID){
-        String sql = "SELECT "+select+", "+ID+" FROM " + Tname;
+        String sql = "SELECT "+select+", ID FROM " + Tname;
         String IDs = Integer.toString(ID);
 
         try (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();
-        ResultSet resset    = stmt.executeQuery(sql)){
+        ResultSet rs    = stmt.executeQuery(sql)){
             // loop through the result set
-            while (resset.next()) {
-                System.out.println("result: String " + resset.getString(select));
-                return resset.getString(select);
+            while (rs.next()) {
+                if(rs.getInt("ID")==ID){ 
+                    return rs.getString(select);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -183,18 +201,19 @@ public class LevelDatabase
         }
         return"eof";
     }
-    
+
     public int selectInt(String select,int ID){
-        String sql = "SELECT "+select+", "+ID+" FROM " + Tname;
+        String sql = "SELECT "+select+", ID FROM " + Tname;
         String IDs = Integer.toString(ID);
 
         try (Connection conn = this.connect();
         Statement stmt  = conn.createStatement();
-        ResultSet resset    = stmt.executeQuery(sql)){
+        ResultSet rs    = stmt.executeQuery(sql)){
             // loop through the result set
-            while (resset.next()) {
-                System.out.println("result: String " + resset.getInt(select));
-                return resset.getInt(select);
+            while (rs.next()) {
+                if(rs.getInt("ID")==ID){ 
+                    return rs.getInt(select);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

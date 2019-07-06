@@ -31,5 +31,5 @@ interface View
     int getTick();
     int getTickDelta();
     
-    public JPanel getContentPane();
+    public JPanel getContentPaneObj();
 }

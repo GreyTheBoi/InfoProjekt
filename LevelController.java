@@ -31,7 +31,16 @@ class LevelController implements Controller
 
     // Nikolas Grafwallner
     public void update(){
-        // if (m.getInt()
+        for(int i = 0; i < m.getSize() ; i++){
+            if (m.getInt("frame", i)==v.getTick()*v.getTickDelta()){
+                System.out.println("N O W\n\n\n\n\n\n\n\n\n\n\n");
+                switch(m.getString("type", i)){
+                    case "err":
+                        addItemTest ait;
+                        ait = new addItemTest(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
+                }
+            }
+        }
     }
 
     /**

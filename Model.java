@@ -14,5 +14,6 @@ interface Model
     void setView(View nv);
     
     String getString(String key, int ID);
-    int getInt(int key, int ID);
+    int getInt(String key, int ID);
+    int getSize();
 }

@@ -219,15 +219,16 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         }
         
         Player.update();
-        
         Timeline.update();
+        c.update();
+        
     }
     
     public int getTickDelta(){
         return tick;
     }
     
-    public JPanel getContentPane(){
+    public JPanel getContentPaneObj(){
         return contentPane;
     }
     

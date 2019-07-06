@@ -92,12 +92,17 @@ public class addItemTest extends JFrame implements PartView, View {
     public int getTick(){
         return frame;
     }
-    
+
     public int getWidth(){return width;}
+
     public int getHeight(){return height;}
+
     public int getX(){return startX;}
+
     public int getY(){return startY;}
+
     public int getSpeed(){return spd;}
+
     public int getFrame(){return frame;}
 
     public void update(){
@@ -144,12 +149,12 @@ public class addItemTest extends JFrame implements PartView, View {
     public String getWindowInput(){
         return input;
     }
-    
+
     public int getTickDelta(){
         return delta;
     }
-    
-    public JPanel getContentPane(){
+
+    public JPanel getContentPaneObj(){
         return null;
     }
 }

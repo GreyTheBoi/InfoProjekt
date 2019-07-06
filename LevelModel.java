@@ -36,8 +36,12 @@ class LevelModel implements Model
         return lvlDB.selectString(key,ID);
     }
     
-    public int getInt(int key, int ID){
-        return lvlDB.selectInt(Integer.toString(key) , ID);
+    public int getInt(String key, int ID){
+        return lvlDB.selectInt(key , ID);
+    }
+    
+    public int getSize(){
+        return lvlDB.getSize();
     }
 
     public void setView(View nv){

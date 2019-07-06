@@ -106,7 +106,7 @@ class TimelineView extends JFrame implements View
         return -1;
     }
     
-    public JPanel getContentPane(){
+    public JPanel getContentPaneObj(){
         return null;
     }
 }
