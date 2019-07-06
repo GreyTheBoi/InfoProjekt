@@ -36,6 +36,8 @@ public class AudioPlayer implements LineListener,Runnable {
 
     private Thread t;
     private String threadName;
+    
+    private AudioInputStream audioStream;
 
     /**
      * Play a given audio file.
@@ -51,7 +53,7 @@ public class AudioPlayer implements LineListener,Runnable {
         try {
             audioFile = new File("audio/" + path);
 
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            audioStream = AudioSystem.getAudioInputStream(audioFile);
 
             AudioFormat format = audioStream.getFormat();
 

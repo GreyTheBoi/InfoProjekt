@@ -76,7 +76,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         Timeline = new TimelineView(contentPane,this);
         Player = new PlayerView(contentPane,this);
         ait = new addItemTest(contentPane,c, 200, 0, 10, hView, 2000, 255);
-        
+
         //adding components to contentPane panel
         contentPane.add(keylistenObj);
 
@@ -86,7 +86,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
-        
+
         //external threads
         ticker = new Ticker(this, tick); //default: 20 ms
         musik = new AudioPlayer("dark_cat_irene.wav");
@@ -95,7 +95,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         out("Player Stats:\nPlayerX: " + Player.PlayerX + "\tPlayerY: " + Player.PlayerY + "\nPlayer size: " + Player.PlayerHeight);
         System.out.println("E O C");
     }
-    
+
     //base funktionen
     /**
      * Controller getter
@@ -118,7 +118,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     public String getWindowInput(){
         return input;
     }
-    
+
     public int getTick(){
         return ticker.getTick();
     }
@@ -217,19 +217,19 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         if(dPressed == true){
             Player.hspeed = Player.getController().processInput("d");
         }
-        
+
         Player.update();
         Timeline.update();
         c.update();
-        
+
     }
-    
+
     public int getTickDelta(){
         return tick;
     }
-    
+
     public JPanel getContentPaneObj(){
         return contentPane;
     }
-    
+
 }

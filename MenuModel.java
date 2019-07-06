@@ -1,6 +1,6 @@
 /**
  * 
- * @author Nicolas Lisgaras 
+ * @author Nicolas Lisgaras, Nikolas Grafwallner
  * @version 20.06.19
  * 
  */
@@ -26,10 +26,12 @@ public class MenuModel implements Model
         v = nv;
     }
     
+    //Nikolas Grafwallner
     public String getString(String key, int ID){
         return "N/A";
     }
     
+    //Nikolas Grafwallner
     public int getInt(String key, int ID){
         return -1;
     }

@@ -2,7 +2,7 @@
 /**
  * Write a description of class LevelModel here.
  * 
- * @author (your name) 
+ * @author Nikolas Grafwallner, Nicolas Lisgaras
  * @version (a version number or a date)
  */
 class LevelModel implements Model
@@ -31,11 +31,11 @@ class LevelModel implements Model
     public View getView(){
         return v;
     }
-
+    //Nikolas Grafwallner 
     public String getString(String key, int ID){
         return lvlDB.selectString(key,ID);
     }
-    
+    //Nikolas Grafwallner
     public int getInt(String key, int ID){
         return lvlDB.selectInt(key , ID);
     }

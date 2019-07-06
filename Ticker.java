@@ -36,9 +36,8 @@ public class Ticker
         timer = new Timer("Timer@"+v.getClass());
         timer.scheduleAtFixedRate(task, ndt, ndt); // task, first frame, tick delta
     }
-    
+
     public int getTick(){
         return tick;
     }
-
 }

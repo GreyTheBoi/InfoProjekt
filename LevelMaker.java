@@ -232,6 +232,7 @@ public class LevelMaker extends JFrame implements ActionListener{
         typeCombobox.setVisible(true);
         typeCombobox.addItem("err");
         typeCombobox.addItem("ait");
+        typeCombobox.addItem("pop");
 
         typeLabel = new JLabel();
         typeLabel.setBounds(5,65,90,35);

@@ -1,6 +1,6 @@
 /**
  * 
- * @author Nicolas Lisgaras 
+ * @author Nicolas Lisgaras, Nikolas Grafwallner
  * @version 20.06.19
  * 
  */
@@ -13,7 +13,9 @@ interface Model
     View getView();
     void setView(View nv);
     
+    //Nikolas Grafwallner
     String getString(String key, int ID);
+    //Nikolas Grafwallner
     int getInt(String key, int ID);
     int getSize();
 }
