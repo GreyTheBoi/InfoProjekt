@@ -63,7 +63,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
         keylistenObj = new JButton("");
         keylistenObj.setBorder(BorderFactory.createEtchedBorder(1));
         keylistenObj.setBounds(-100,-100,20,20);
-        keylistenObj.setBackground(new Color(0,0,0));
+        keylistenObj.setBackground(new Color(0,255,0));
         keylistenObj.setForeground(new Color(0,0,0));
         keylistenObj.setEnabled(true);
         keylistenObj.setFont(new Font("sansserif",0,12));

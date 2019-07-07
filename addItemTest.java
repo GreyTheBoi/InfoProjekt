@@ -114,15 +114,15 @@ public class addItemTest extends JFrame implements PartView, View {
             y = (double)frame/delay;
             x = y * 255;
             particle.setBackground(new Color((int)x,(int)x,(int)x));
-            System.out.println(particle.getBackground());
-            System.out.println("up " + frame);
+            // System.out.println(particle.getBackground());
+            // System.out.println("up " + frame);
         }
         if(frame >= delay && frame <= delay+death){ //keep
             particle.setForeground(new Color(255,0,0));
             particle.setBackground(new Color(255,0,0));
             collision = true;
-            System.out.println(particle.getBackground());
-            System.out.println("keep " + frame);
+            // System.out.println(particle.getBackground());
+            // System.out.println("keep " + frame);
         }
         if(frame >= delay+death && frame <= delay+death*2){ //fade
             double x = frame-delay-death;
@@ -131,11 +131,11 @@ public class addItemTest extends JFrame implements PartView, View {
             double result = 255-z*255;
             particle.setBackground(new Color((int)result,(int)result,(int)result)); // notiz: ICH HASSE DOUBLES IN JAVA
             collision = false;
-            System.out.println(particle.getBackground());
-            System.out.println("x "+x+" y "+y+" z "+z+" result "+(int)result);
+            // System.out.println(particle.getBackground());
+            // System.out.println("x "+x+" y "+y+" z "+z+" result "+(int)result);
         }
         if(frame == delay+death*2){
-            System.out.println("called out: " + getClass() + " at frame: "+frame);
+            // System.out.println("called out: " + getClass() + " at frame: "+frame);
             startX = startY = width = height = -20;
         }
         if(frame >= delay+death*2){

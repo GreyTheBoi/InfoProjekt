@@ -15,7 +15,7 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.border.Border;
 import javax.swing.*;
 
-public class LevelMaker extends JFrame implements ActionListener{
+public class LevelMaker extends JFrame implements ActionListener,View{
 
     LevelDatabase LDB;
 
@@ -45,12 +45,14 @@ public class LevelMaker extends JFrame implements ActionListener{
     private JLabel widthLabel;
     private JTextField posXField;
 
+    private Ticker t;
+
     //Constructor 
     public LevelMaker(){
 
         setTitle("LevelMaker");
         setSize(330,400);
-
+        
         LDB = new LevelDatabase();
 
         //pane with null layout
@@ -233,6 +235,7 @@ public class LevelMaker extends JFrame implements ActionListener{
         typeCombobox.addItem("err");
         typeCombobox.addItem("ait");
         typeCombobox.addItem("pop");
+        typeCombobox.addItem("bullet");
 
         typeLabel = new JLabel();
         typeLabel.setBounds(5,65,90,35);
@@ -300,6 +303,46 @@ public class LevelMaker extends JFrame implements ActionListener{
         setLocationRelativeTo(null);
         pack();
         setVisible(true);
+        
+        t = new Ticker(this,20);
+    }
+
+    public String getWindowInput(){
+        return "N/A";
+    }
+
+    public void update(){
+        if(typeCombobox.getSelectedItem().toString() == "pop"){
+            widthLabel.setText("speed:");
+        }
+        else if(typeCombobox.getSelectedItem().toString() == "bullet"){
+            widthLabel.setText("speed:");
+            opacityLabel.setText("direction:");
+        }
+        else{
+            widthLabel.setText("width:");
+            opacityLabel.setText("opacity:");
+        }
+    }
+
+    public Controller getController(){
+        return null;
+    }
+
+    public void setController(Controller nc){
+
+    }
+
+    public int getTick(){
+        return -1;
+    }   
+
+    public int getTickDelta(){
+        return -1;
+    }   
+
+    public JPanel getContentPaneObj(){
+        return null;
     }
 
     public void actionPerformed(ActionEvent e) {
