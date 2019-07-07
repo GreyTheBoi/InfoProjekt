@@ -57,6 +57,12 @@ class LevelController implements Controller
                         bullet = new partBullet(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
                         m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
                         break;
+                    case "border":
+                        System.out.println("making border");
+                        partBorder border;
+                        border = new partBorder(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
+                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
+                        break;
                     default:
                         System.out.println("error in Database couldn't find object " + type);
                 }

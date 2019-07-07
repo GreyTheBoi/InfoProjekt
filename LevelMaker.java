@@ -236,6 +236,7 @@ public class LevelMaker extends JFrame implements ActionListener,View{
         typeCombobox.addItem("ait");
         typeCombobox.addItem("pop");
         typeCombobox.addItem("bullet");
+        typeCombobox.addItem("border");
 
         typeLabel = new JLabel();
         typeLabel.setBounds(5,65,90,35);
@@ -318,6 +319,10 @@ public class LevelMaker extends JFrame implements ActionListener,View{
         else if(typeCombobox.getSelectedItem().toString() == "bullet"){
             widthLabel.setText("speed:");
             opacityLabel.setText("direction:");
+        }
+        else if(typeCombobox.getSelectedItem().toString() == "border"){
+            widthLabel.setText("beat:");
+            opacityLabel.setText("orientation:");
         }
         else{
             widthLabel.setText("width:");

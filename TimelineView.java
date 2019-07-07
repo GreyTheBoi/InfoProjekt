@@ -20,18 +20,18 @@ import javax.swing.*;
  */
 class TimelineView extends JFrame implements View
 {
-    
+
     Controller c;
     View level;
-    
+
     String input;
     boolean keyPressed;
     int frame; // aktueller frame des levels
     int length; // länge des levels
-    
+
     private JPanel TimelineBackground;
     private JPanel TimelineFront;
-    
+
     /**
      * Constructor for objects of class TimelineView
      */
@@ -40,7 +40,7 @@ class TimelineView extends JFrame implements View
         c = new TimelineController();
         level = v;
         length = 0;
-        
+
         TimelineBackground = new JPanel(null);
         TimelineBackground.setBorder(BorderFactory.createEtchedBorder(1));
         TimelineBackground.setBounds(25,25,450,25);
@@ -58,14 +58,14 @@ class TimelineView extends JFrame implements View
         TimelineFront.setEnabled(true);
         TimelineFront.setFont(new Font("sansserif",0,12));
         TimelineFront.setVisible(true);
-        
+
         //adding components to contentPane panel
         contentPane.add(TimelineBackground);
         contentPane.add(TimelineFront);
-        
+
         this.setLocation(0, 0);
     }
-    
+
     //base funktionen
     public Controller getController(){
         return c;
@@ -83,29 +83,30 @@ class TimelineView extends JFrame implements View
     public boolean getKeyState(){
         return keyPressed;
     }
-    
+
     public int processFrames(int frameRate, int length){
         int fps;
         fps = 1000/frameRate;
         return length*fps;
     }
-    
+
     public void update(){
+
         length = processFrames(level.getTickDelta(), 194);
         frame = level.getTick();
         double ratio = (double)frame/length;
         double result = ratio * 450;
         TimelineBackground.setBounds(25,25,(int)result,25);
     }
-    
+
     public int getTick(){
         return -1;
     }
-    
+
     public int getTickDelta(){
         return -1;
     }
-    
+
     public JPanel getContentPaneObj(){
         return null;
     }
