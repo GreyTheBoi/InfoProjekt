@@ -37,17 +37,18 @@ public class partPopup extends JFrame implements PartView, View {
     int frame;
 
     //Constructor 
-    public partPopup(JPanel contentPane, Controller nC, int nX, int nY, int w, int h, int nDelay, int maxOpacity){
+    public partPopup(JPanel contentPane, Controller nC, int nX, int nY, int w, int h, int nDelay, int maxOpacity,int nDeath){
         frame = 0;
         collision = false;
-        delta = 20;
 
         c = nC;
+        delta = c.getView().getTickDelta();
+        
         death = 20;
         partCount = 1;
         input = "N/A";
         delay = nDelay;
-        death = 500; //(default: 1000ms)
+        death = nDeath; //(default: 500ms)
         spd = 20; //(default:20ms)
 
         startX = nX;

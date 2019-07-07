@@ -39,29 +39,29 @@ class LevelController implements Controller
                     case "err":
                         addItemTest err;
                         err = new addItemTest(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
-                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
+                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
                         break;
                     case "ait":
                         addItemTest ait;
                         ait = new addItemTest(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
-                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
+                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
                         break;
                     case "pop":
                         partPopup pop;
                         pop = new partPopup(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
-                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
+                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
                         break;
                     case "bullet":
                         System.out.println("making bullet");
                         partBullet bullet;
                         bullet = new partBullet(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
-                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
+                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
                         break;
                     case "border":
                         System.out.println("making border");
                         partBorder border;
                         border = new partBorder(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
-                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i));
+                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
                         break;
                     default:
                         System.out.println("error in Database couldn't find object " + type);

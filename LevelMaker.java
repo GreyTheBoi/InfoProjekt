@@ -323,10 +323,14 @@ public class LevelMaker extends JFrame implements ActionListener,View{
         else if(typeCombobox.getSelectedItem().toString() == "border"){
             widthLabel.setText("beat:");
             opacityLabel.setText("orientation:");
+            posXLabel.setText("obsolete:");
+            posYLabel.setText("obsolete:");
         }
         else{
             widthLabel.setText("width:");
             opacityLabel.setText("opacity:");
+            posXLabel.setText("X position:");
+            posYLabel.setText("Y position:");
         }
     }
 

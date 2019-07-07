@@ -40,7 +40,7 @@ public class partBorder extends JFrame implements PartView, View {
     int beat;
 
     //Constructor 
-    public partBorder(JPanel nContentPane, Controller nC, int nX, int nY, int w, int h, int nDelay, int maxOpacity){
+    public partBorder(JPanel nContentPane, Controller nC, int nX, int nY, int w, int h, int nDelay, int maxOpacity,int nDeath){
         frame = 0;
         collision = false;
 
@@ -54,7 +54,7 @@ public class partBorder extends JFrame implements PartView, View {
         partCount = 1;
         input = "N/A";
         delay = nDelay;
-        death = 5000; //(default: 1000ms)
+        death = nDeath; //(default: 5000ms)
         spd = 20; //(default:20ms)
 
         startX = nX;
