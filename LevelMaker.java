@@ -240,6 +240,7 @@ public class LevelMaker extends JFrame implements ActionListener,View{
         typeCombobox.setVisible(true);
         typeCombobox.addItem("err");
         typeCombobox.addItem("ait");
+        typeCombobox.addItem("aith");
         typeCombobox.addItem("pop");
         typeCombobox.addItem("bullet");
         typeCombobox.addItem("border");

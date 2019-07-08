@@ -138,12 +138,13 @@ public class PlayerView extends JFrame implements View{
         tick ++;
         PlayerX += hspeed;
         PlayerY += vspeed;
-        player.setLocation(PlayerX, PlayerY);
-
+        
         if(PlayerX > level.wView - PlayerWidth){ PlayerX = level.wView - PlayerWidth;}
         if(PlayerY > level.hView - PlayerHeight){ PlayerY = level.hView - PlayerHeight;}
         if(PlayerX < 0){ PlayerX = 0;}
         if(PlayerY < 0){ PlayerY = 0;}
+        
+        player.setLocation(PlayerX, PlayerY);
 
         player.setVisible(true);
         vspeed = 0;

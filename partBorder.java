@@ -74,7 +74,7 @@ public class partBorder extends JFrame implements PartView, View {
         lowerBorder.setForeground(new Color(64,64,64));
         lowerBorder.setEnabled(true);
         lowerBorder.setFont(new Font("sansserif",0,12));
-        // lowerBorder.setOpaque(true); //komische Funktion der dinge dazu bringt sich komisch zu verhalten
+        lowerBorder.setOpaque(true); //komische Funktion der dinge dazu bringt sich komisch zu verhalten
         lowerBorder.setVisible(true);
 
         upperBorder = new JPanel();
@@ -83,7 +83,7 @@ public class partBorder extends JFrame implements PartView, View {
         upperBorder.setForeground(new Color(64,64,64));
         upperBorder.setEnabled(true);
         upperBorder.setFont(new Font("sansserif",0,12));
-        // upperBorder.setOpaque(true);
+        upperBorder.setOpaque(true);
         upperBorder.setVisible(true);
 
         //adding components to contentPane panel
@@ -139,7 +139,7 @@ public class partBorder extends JFrame implements PartView, View {
     public void update(){
         //updatet grafik Elemente IMMER solange objekt aktiv ist
         //Die aktivität geht von 0 bis der delay wert und zusätzlich der tod wert zwei mal überschitten wird
-        if(frame <= delay+death*2 && frame >= delay){
+        if(frame <= delay+death && frame >= delay){
             lowerBorder.setVisible(true);
             lowerBorder.repaint();
             upperBorder.setVisible(true);
@@ -196,6 +196,8 @@ public class partBorder extends JFrame implements PartView, View {
         if(frame >= delay+death && frame <= delay+death*2){ //fade
             //fade animation
             
+            lowerBorder.setBounds(0,400-height,500,400-1);
+            upperBorder.setBounds(0,0,500,height-1);
             lowerBorder.setBounds(0,400-height,500,400);
             upperBorder.setBounds(0,0,500,height);
 

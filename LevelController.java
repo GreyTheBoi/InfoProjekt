@@ -49,6 +49,11 @@ class LevelController implements Controller
                         ait = new addItemTest(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
                         m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
                         break;
+                    case "aith":
+                        addItemTestH aith;
+                        aith = new addItemTestH(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
+                        m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
+                        break;
                     case "pop":
                         partPopup pop;
                         pop = new partPopup(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
