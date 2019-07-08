@@ -12,6 +12,10 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.border.Border;
 import javax.swing.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
 /**
  *Text genereted by Simple GUI Extension for BlueJ
  * 
@@ -25,7 +29,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
 
     String input;
     boolean keyPressed;
-    
+
     private JButton AnleitungButton;
     private JRadioButton Einstellung1RadioButton;
     private JRadioButton Einstellung2RadioButton;
@@ -41,11 +45,16 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     private JPanel VonPanel;
     private JPanel panel2;
 
+    private AudioPlayer audio;
+
     //Constructor 
     public TitelbildschirmView(){
 
         setTitle("Titelbildschirm");
         setSize(500,400);
+
+        audio = new AudioPlayer("MenuScreen.wav");
+        audio.start();
 
         //pane with null layout
         JPanel contentPane = new JPanel(null);
@@ -60,6 +69,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         AnleitungButton.setFont(new Font("SansSerif",1,24));
         AnleitungButton.setText("?");
         AnleitungButton.setVisible(true);
+        AnleitungButton.addActionListener(this);
 
         Einstellung1RadioButton = new JRadioButton();
         Einstellung1RadioButton.setBounds(10,55,90,35);
@@ -76,7 +86,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         Einstellung2RadioButton.setForeground(new Color(0,0,0));
         Einstellung2RadioButton.setEnabled(true);
         Einstellung2RadioButton.setFont(new Font("sansserif",0,12));
-        Einstellung2RadioButton.setText("insert @view");
+        Einstellung2RadioButton.setText("Skill");
         Einstellung2RadioButton.setVisible(true);
 
         Einstellung3RadioButton = new JRadioButton();
@@ -85,7 +95,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         Einstellung3RadioButton.setForeground(new Color(0,0,0));
         Einstellung3RadioButton.setEnabled(true);
         Einstellung3RadioButton.setFont(new Font("sansserif",0,12));
-        Einstellung3RadioButton.setText("insert @view");
+        Einstellung3RadioButton.setText("Dev tools");
         Einstellung3RadioButton.setVisible(true);
 
         EinstellungLabel = new JLabel();
@@ -105,6 +115,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         EndeButton.setFont(new Font("SansSerif",1,24));
         EndeButton.setText("Ende");
         EndeButton.setVisible(true);
+        EndeButton.addActionListener(this);
 
         LabelVon = new JLabel();
         LabelVon.setBounds(38,13,45,25);
@@ -123,6 +134,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         LadenButton.setFont(new Font("SansSerif",1,24));
         LadenButton.setText("Laden");
         LadenButton.setVisible(true);
+        LadenButton.addActionListener(this);
 
         NameTexarea = new JTextArea();
         NameTexarea.setBounds(15,60,100,80);
@@ -130,7 +142,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         NameTexarea.setForeground(new Color(0,0,0));
         NameTexarea.setEnabled(false);
         NameTexarea.setFont(new Font("SansSerif",0,18));
-        NameTexarea.setText("Nicolas L.\nTobias K.\nNiko G.");
+        NameTexarea.setText("Nicolas L.\nNiko G.");
         NameTexarea.setBorder(BorderFactory.createBevelBorder(1));
         NameTexarea.setVisible(true);
 
@@ -145,12 +157,12 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         StartButton.addActionListener(this);
 
         TitelLabel = new JLabel();
-        TitelLabel.setBounds(100,25,252,45);
+        TitelLabel.setBounds(130,25,250,45);
         TitelLabel.setBackground(new Color(214,217,223));
         TitelLabel.setForeground(new Color(0,0,0));
         TitelLabel.setEnabled(true);
         TitelLabel.setFont(new Font("SansSerif",1,28));
-        TitelLabel.setText("Insert Title @view");
+        TitelLabel.setText("B I T   T u n e s");
         TitelLabel.setVisible(true);
 
         TitelPanel = new JPanel(null);
@@ -222,11 +234,11 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         pack();
         setVisible(true);
     }
-    
+
     public PlayerView getPlayer(){
         return null;
     }
-    
+
     //change screen sollte im interface (View) stehen @view!!
     /**
      * Ändert die view und gibt es an den controller weiter (Passiert hier da die änderung hier verarbeitet)
@@ -237,7 +249,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         newView.setController(newController);
         dispose();
     }
-    
+
     //base funktionen
     public Controller getController(){
         return c;
@@ -251,54 +263,99 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     public String getWindowInput(){
         return input;
     }
-    
+
     public int getTick(){
         return -1;
     }
-    
+
     public boolean getKeyState(){
         return keyPressed; 
     }
 
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.StartButton){
-            EinstellungLabel.setText(("got start"));
-            
+            //EinstellungLabel.setText(("got start"));
+
+            AudioPlayer bp = new AudioPlayer("button.wav");
+            bp.start();
+
+            StartButton.setText("Loading");
+            System.out.println("Loading");
+
+            audio.stop();
+
+            for(long i = -32000;i<32000;i++){}
+
+            System.out.println("ended");
+
             Controller nc;
             nc = new LevelController();
-            
+
             View nv;
             nv = new LevelView();
-            
+
             changeScreen(nv, nc);
         }
-    }
-    
-    //escape schließt das Programm (nicht nur das Fenster)
-    public void keyPressed(KeyEvent e) {  
-        EinstellungLabel.setText("Pressed" + e.getKeyChar()); 
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){ //escape
+        else if(e.getSource() == this.EndeButton){
+            //got ende 
+            AudioPlayer bp = new AudioPlayer("button.wav");
+            bp.start();
+            for(long i = -3200000;i<3200000;i++){}
             dispose();
             System.exit(0);
+        }
+        else if(e.getSource() == this.LadenButton){
+            //got ende 
+            AudioPlayer bp = new AudioPlayer("button.wav");
+            bp.start();
+        }
+        else if(e.getSource() == this.AnleitungButton){
+            AudioPlayer bp = new AudioPlayer("button.wav");
+            bp.start();
+
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    File theUMFile = new File("Anleitung.pdf");
+                    Desktop.getDesktop().open(theUMFile);
+                }
+                catch (FileNotFoundException fnf){
+                    System.out.println("error: file not found"+fnf);
+                }
+                catch (IllegalArgumentException fnf) {
+                    System.out.println("error: file not found"+fnf);
+                }
+                catch (IOException ex) {
+                    System.out.println("error: cannot open file"+ex);
+                }
+            } 
+        }
+    }
+
+    //escape schließt das Programm (nicht nur das Fenster)
+    public void keyPressed(KeyEvent e) {  
+        //EinstellungLabel.setText("Pressed" + e.getKeyChar()); 
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){ //escape
+            dispose();
+            System.exit(0); //diese Line schließt das Programm (nicht nur das Fenster)
         }
     }  
 
     public void keyReleased(KeyEvent e) {  
-        EinstellungLabel.setText("Released" + e.getKeyChar());  
+        //EinstellungLabel.setText("Released" + e.getKeyChar());  
     }  
 
     public void keyTyped(KeyEvent e) {  
-        EinstellungLabel.setText("Typed" + e.getKeyChar());  
+        //EinstellungLabel.setText("Typed" + e.getKeyChar());  
     }  
-    
+
     public void update(){
         //leer
     }
-    
+
     public int getTickDelta(){
         return -1;
     }
-    
+
     public JPanel getContentPaneObj(){
         return null;
     }

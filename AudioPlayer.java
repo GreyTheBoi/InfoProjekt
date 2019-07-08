@@ -20,9 +20,7 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-
 public class AudioPlayer implements LineListener,Runnable {
-
     /**
      * this flag indicates whether the playback completes or not.
      */
@@ -33,6 +31,8 @@ public class AudioPlayer implements LineListener,Runnable {
     private Thread t;
     private String threadName;
     
+    public boolean status;
+
     private AudioInputStream audioStream;
 
     /**
@@ -41,6 +41,7 @@ public class AudioPlayer implements LineListener,Runnable {
      */
     AudioPlayer(String audioFilePath) {
         path = audioFilePath;
+        status = true;
         threadName = audioFilePath + ".thread";
         System.out.println("Creating " +  threadName );
     }
@@ -71,8 +72,8 @@ public class AudioPlayer implements LineListener,Runnable {
                     ex.printStackTrace();
                 }
             }
-
             audioClip.close();
+            status = false;
 
         } catch (UnsupportedAudioFileException ex) {
             System.out.println("The specified audio file is not supported.");
@@ -92,6 +93,22 @@ public class AudioPlayer implements LineListener,Runnable {
             t = new Thread (this, threadName);
             t.start ();
         }
+    }
+
+    public void stop(){
+        if (t != null) {
+            playCompleted = true;
+            System.out.println("audio stopped: " + threadName);
+        }
+        else{System.out.println("no audio playing!");}
+    }
+
+    public void unpause(){
+        if (t != null) {
+            playCompleted = false;
+            System.out.println("audio resumed: " + threadName);
+        }
+        else{System.out.println("no audio playing!");}
     }
 
     /**

@@ -152,7 +152,8 @@ public class addItemTestH extends JFrame implements PartView, View {
             startX = startY = width = height = -20;
             setVisible(false);
         }
-
+        
+        particle.setBounds(startX-1,startY-1,width-1,height-1);
         particle.setBounds(startX,startY,width,height);
     }
 
