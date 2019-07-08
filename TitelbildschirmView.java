@@ -222,7 +222,15 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
         pack();
         setVisible(true);
     }
-
+    
+    public PlayerView getPlayer(){
+        return null;
+    }
+    
+    //change screen sollte im interface (View) stehen @view!!
+    /**
+     * Ändert die view und gibt es an den controller weiter (Passiert hier da die änderung hier verarbeitet)
+     */
     public void changeScreen(View newView, Controller newController)
     {
         newController.setView(newView);
@@ -265,7 +273,8 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
             changeScreen(nv, nc);
         }
     }
-
+    
+    //escape schließt das Programm (nicht nur das Fenster)
     public void keyPressed(KeyEvent e) {  
         EinstellungLabel.setText("Pressed" + e.getKeyChar()); 
         if(e.getKeyCode() == KeyEvent.VK_ESCAPE){ //escape
@@ -283,7 +292,7 @@ public class TitelbildschirmView extends JFrame implements View, KeyListener, Ac
     }  
     
     public void update(){
-        
+        //leer
     }
     
     public int getTickDelta(){

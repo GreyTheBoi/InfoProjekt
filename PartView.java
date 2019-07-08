@@ -1,5 +1,7 @@
 /**
  * 
+ * Ein interface.
+ * 
  * @author Nicolas Lisgaras 
  * @version 20.06.19
  * 

@@ -1,5 +1,7 @@
 /**
  * 
+ * der controller für timelineView (ist filler)
+ * 
  * @author Nicolas Lisgaras, Nikolas Grafwallner 
  * @version 20.06.19
  * 

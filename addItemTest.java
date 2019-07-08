@@ -1,4 +1,6 @@
 /**
+ * Für kommentare zu Funktionenn siehe part Bullet
+ * 
  *Text genereted by Simple GUI Extension for BlueJ
  */
 import javax.swing.UIManager.LookAndFeelInfo;
@@ -42,12 +44,12 @@ public class addItemTest extends JFrame implements PartView, View {
 
         c = nC;
         delta = c.getView().getTickDelta();
-        
+
         death = 20;
         partCount = 1;
         input = "N/A";
         delay = nDelay;
-        death = nDeath; //(default: 500ms)
+        death = nDeath; //(default: 500ms) 
         spd = 20; //(default:20ms)
 
         startX = nX;
@@ -110,6 +112,7 @@ public class addItemTest extends JFrame implements PartView, View {
         particle.setVisible(true);
         frame = frame +  spd;
         if(frame <= (delay/2)){ //up
+            //die up phase ist wie die fade phase aber Rückwärts 
             double x;
             double y;
             y = (double)frame/delay;
@@ -121,6 +124,12 @@ public class addItemTest extends JFrame implements PartView, View {
         if(frame >= delay && frame <= delay+death){ //keep
             particle.setForeground(new Color(255,0,0));
             particle.setBackground(new Color(255,0,0));
+
+            if(c.getView().getPlayer().PlayerX > startX && c.getView().getPlayer().PlayerX < startX+width && c.getView().getPlayer().getInvincible() == false){
+                c.getView().getPlayer().loseLife();
+                System.out.println("hit");
+            }
+
             collision = true;
             // System.out.println(particle.getBackground());
             // System.out.println("keep " + frame);
@@ -149,6 +158,10 @@ public class addItemTest extends JFrame implements PartView, View {
 
     public String getWindowInput(){
         return input;
+    }
+
+    public PlayerView getPlayer(){
+        return null;
     }
 
     public int getTickDelta(){

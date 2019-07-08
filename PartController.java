@@ -7,6 +7,8 @@
  */
 class PartController implements Controller
 {
+    //er wird als filler für View requriements und zukünftige änderunge gebraucht (oder so in der Richtung)
+    
     View v;
     Model m;
 
@@ -38,7 +40,7 @@ class PartController implements Controller
     }
     
     public void update(){
-       
+       //leer
     }
 
     /**
@@ -46,6 +48,6 @@ class PartController implements Controller
      */
     PartController ()
     {
-
+        //leer
     }
 }

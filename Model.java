@@ -1,4 +1,5 @@
 /**
+ * Model Interface
  * 
  * @author Nicolas Lisgaras, Nikolas Grafwallner
  * @version 20.06.19

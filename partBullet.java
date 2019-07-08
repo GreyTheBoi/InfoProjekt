@@ -1,5 +1,11 @@
 /**
+ * Für kommentare siehe partBorder
+ * 
  *Text genereted by Simple GUI Extension for BlueJ
+ *
+ * @author Nikolas Grafwallner, Nicolas Lisgaras
+ * @version 06.07.19
+ * 
  */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
@@ -46,7 +52,7 @@ public class partBullet extends JFrame implements PartView, View {
         contentPane = nContentPane;
 
         c = nC;
-        dir = maxOpacity;
+        dir = maxOpacity; // opacity wird hier als richtung verwendet wenn opacity >1 links und sonst rechts siehe L.161 ff
 
         delta = c.getView().getTickDelta();
 
@@ -86,6 +92,10 @@ public class partBullet extends JFrame implements PartView, View {
         // System.out.println("BULLETZ\n\n\n\n\n\n\n\n\n\n");
 
         tick = new Ticker(this,delta);
+    }
+    
+    public PlayerView getPlayer(){
+        return null;
     }
 
     public int getDeath(){

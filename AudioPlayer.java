@@ -1,7 +1,8 @@
 /**
- * Write a description of class Music here.
- *
- * @author /
+ * This is an example program that demonstrates how to play back an audio file
+ * using the Clip in Java Sound API.
+ * 
+ * @author www.codejava.net
  * @version 25.06.19
  */
 // Java program to play an Audio 
@@ -19,12 +20,7 @@ import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- * This is an example program that demonstrates how to play back an audio file
- * using the Clip in Java Sound API.
- * @author www.codejava.net
- *
- */
+
 public class AudioPlayer implements LineListener,Runnable {
 
     /**

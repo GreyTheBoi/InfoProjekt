@@ -20,6 +20,9 @@ public class LevelViewTest
     {
     }
     
+    /**
+     * testet ob die funktion die richtigen sachen zurück gibt für den richtigen input
+     */
     @Test
     public void getDefaultInputValueProperly() {
         View levelView = new LevelView();

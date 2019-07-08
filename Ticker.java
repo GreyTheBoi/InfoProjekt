@@ -12,11 +12,11 @@ public class Ticker
 {
     View v;
 
-    TimerTask task;
-    Timer timer;
+    TimerTask task; //task: gibt an was jeden tick getan wird
+    Timer timer; //timer: ist der eigentliche timer
 
-    int deltaTime;
-    int tick;
+    int deltaTime; //tick delta
+    int tick; //aktueller frame
 
     /**
      * Ticker( view, delta time )
@@ -28,8 +28,8 @@ public class Ticker
         task = new TimerTask() {
             public void run() {
                 nV.update();
-                //System.out.println(tick);
-                tick++;
+                //System.out.println(tick); //tick 
+                tick++; //mehr tick
             }
         };
 

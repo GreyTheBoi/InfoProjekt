@@ -5,7 +5,8 @@
  * 
  */
 public class MenuController implements Controller
-{
+{   
+    //wird erst später verwendet
     View v;
     Model m;
     

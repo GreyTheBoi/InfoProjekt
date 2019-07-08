@@ -1,5 +1,11 @@
 /**
- *Text genereted by Simple GUI Extension for BlueJ
+ * 
+ *  Level making tool um Frames zu markeieren miot space und auszugeben mit enter 
+ *  DIESE KLASSE ENTHÄLT EINE LISTE >:)
+ * 
+ * @author Nicolas Lisgaras 
+ * @version 27.06.19
+ * 
  */
 
 import javax.swing.UIManager.LookAndFeelInfo;

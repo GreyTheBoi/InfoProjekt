@@ -79,6 +79,10 @@ class TimelineView extends JFrame implements View
     public String getWindowInput(){
         return input;
     }
+    
+    public PlayerView getPlayer(){
+        return null;
+    }
 
     public boolean getKeyState(){
         return keyPressed;
@@ -89,16 +93,18 @@ class TimelineView extends JFrame implements View
         fps = 1000/frameRate;
         return length*fps;
     }
-
+    
+    /**
+     * berechnet wie die timeline sich ändern soll anhand der länge des songs
+     */
     public void update(){
-
-        length = processFrames(level.getTickDelta(), 194);
+        length = processFrames(level.getTickDelta(), 194); //194 ist EIN FIXER WERT! soll variabel für andere songs in der zukunft sein Wird implementiert mit: Level2 tabelle
         frame = level.getTick();
         double ratio = (double)frame/length;
         double result = ratio * 450;
         TimelineBackground.setBounds(25,25,(int)result,25);
     }
-
+    
     public int getTick(){
         return -1;
     }

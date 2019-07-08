@@ -20,11 +20,17 @@ public class LevelDatabaseTest
         DB = new LevelDatabase();
     }
 
+    /**
+     * Testet ob datenbank Strings richtig lesen kann, dabei muss der eintrag mit ID -1 100 sein 
+     */
     @Test
     public void getDBstringValueProperly() {        
         assertEquals("checks if selectString works", "err", DB.selectString("type",-1));
     }
 
+    /**
+     * Testet ob datenbank integer richtig lesen kann, dabei muss der eintrag mit ID -1 100 sein 
+     */
     @Test
     public void getDBintValueProperly() {
         assertEquals("checks if selectString works", 1000, DB.selectInt("death",-1));

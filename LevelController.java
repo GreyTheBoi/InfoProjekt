@@ -1,5 +1,7 @@
 /**
  * 
+ * Level controller mit Model/DB verbindung um objekte zu laden
+ * 
  * @author Nicolas Lisgaras, Nikolas Grafwallner 
  * @version 20.06.19
  * 
@@ -31,12 +33,13 @@ class LevelController implements Controller
 
     // Nikolas Grafwallner
     public void update(){
-        for(int i = 0; i < m.getSize() ; i++){
-            if (m.getInt("frame", i)==v.getTick()){
+        //ein Block voller Kopfschmerzen
+        for(int i = 0; i < m.getSize() ; i++){//geht jede ID einzeln durch bis er auf ein Match stößt
+            if (m.getInt("frame", i)==v.getTick()){//checkt nach ob ^ zutrifft
                 // System.out.println("N O W\n\n\n\n\n\n\n\n\n\n\n");
-                String type = m.getString("type", i);
-                switch(type){
-                    case "err":
+                String type = m.getString("type", i); // schreibt den DB eintrag in eine variable damit er nicht immer aufgerufen wird
+                switch(type){ //Die datenbank hat einen haufen an typen von objekten zur auswahl die ovneinander unterschieden werden müssen
+                    case "err": //error/filler eintag SOLL NICHT VERWENDET WERDEN (AUßER FÜR ID -1)
                         addItemTest err;
                         err = new addItemTest(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
                         m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
@@ -63,7 +66,7 @@ class LevelController implements Controller
                         border = new partBorder(v.getContentPaneObj(),this,m.getInt("posX", i),m.getInt("posY", i),
                         m.getInt("width", i),m.getInt("height", i),m.getInt("delay", i),m.getInt("opacity", i),m.getInt("death", i));
                         break;
-                    default:
+                    default: //gibt zurück falls die DATENBANK einen blödsinn von sich gibt
                         System.out.println("error in Database couldn't find object " + type);
                 }
             }
@@ -75,6 +78,7 @@ class LevelController implements Controller
      */
     LevelController ()
     {
+        //der bescheidene Konstruktor
         m = new LevelModel();
         m.setController(this);
         m.setView(v);

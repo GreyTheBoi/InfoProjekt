@@ -1,5 +1,7 @@
 /**
  * 
+ * Aktuell nicht benutzt wird aber für Spiel laden wichtig
+ * 
  * @author Nicolas Lisgaras, Nikolas Grafwallner
  * @version 20.06.19
  * 

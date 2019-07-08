@@ -15,6 +15,8 @@ import javax.swing.*;
 
 /**
  * 
+ * interface.
+ * 
  * @author Nicolas Lisgaras 
  * @version 20.06.19
  * 
@@ -32,4 +34,6 @@ interface View
     int getTickDelta();
     
     public JPanel getContentPaneObj();
+    
+    public PlayerView getPlayer();
 }

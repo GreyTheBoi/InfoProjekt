@@ -38,7 +38,7 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     //private MapDevHelper dh; //obsolete
     private MapDevHelper MapDevHelper;
     private TimelineView Timeline;
-    private PlayerView Player;
+    public PlayerView Player;
     private JPanel contentPane;
 
     //Constructor 
@@ -225,7 +225,11 @@ public class LevelView extends JFrame implements View, KeyListener, ActionListen
     }
 
     public int getTickDelta(){
-        return tick;
+        return tick;//nicht verwirrt sein tick delta wird in int tick gespeiuchert und der aktuelle tick wird nicht gepeichert
+    }
+    
+    public PlayerView getPlayer(){
+        return Player;
     }
 
     public JPanel getContentPaneObj(){

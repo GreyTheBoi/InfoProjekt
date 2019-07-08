@@ -1,5 +1,11 @@
 /**
+ * Partikel "border": Erstellt bewegende ränder an der Seite
+ * 
  *Text genereted by Simple GUI Extension for BlueJ
+ *
+ * @author Nikolas Grafwallner, Nicolas Lisgaras
+ * @version 07.07.19
+ *
  */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
@@ -44,13 +50,13 @@ public class partBorder extends JFrame implements PartView, View {
         frame = 0;
         collision = false;
 
-        contentPane = nContentPane;
+        contentPane = nContentPane; //contentpane ist gür spätere aktionen Global 
 
         c = nC;
-        ori = maxOpacity;
+        ori = maxOpacity; //der Opacitity Wert wird hier umfunktioniert zur orientierung des effekts entweder oben/unten oder links/rechts
 
-        delta = c.getView().getTickDelta();
-        
+        delta = c.getView().getTickDelta(); // übernimmt das tick delta für eigenen ticker -> Synchronisation
+
         partCount = 1;
         input = "N/A";
         delay = nDelay;
@@ -61,14 +67,14 @@ public class partBorder extends JFrame implements PartView, View {
         startY = nY;
         width = w;
         height = h;
-        
+
         lowerBorder = new JPanel();
         lowerBorder.setBounds(0,400-h,500,400);
         lowerBorder.setBackground(new Color(64,64,64));
         lowerBorder.setForeground(new Color(64,64,64));
         lowerBorder.setEnabled(true);
         lowerBorder.setFont(new Font("sansserif",0,12));
-        // lowerBorder.setOpaque(true);
+        // lowerBorder.setOpaque(true); //komische Funktion der dinge dazu bringt sich komisch zu verhalten
         lowerBorder.setVisible(true);
 
         upperBorder = new JPanel();
@@ -97,7 +103,10 @@ public class partBorder extends JFrame implements PartView, View {
         return partCount;
     }
 
-    //base funktionen
+    public PlayerView getPlayer(){
+        return null;
+    }
+
     public Controller getController(){
         return c;
     }
@@ -113,7 +122,8 @@ public class partBorder extends JFrame implements PartView, View {
     public int getTick(){
         return frame;
     }
-
+    
+    //getter block
     public int getWidth(){return width;}
 
     public int getHeight(){return height;}
@@ -127,6 +137,8 @@ public class partBorder extends JFrame implements PartView, View {
     public int getFrame(){return frame;}
 
     public void update(){
+        //updatet grafik Elemente IMMER solange objekt aktiv ist
+        //Die aktivität geht von 0 bis der delay wert und zusätzlich der tod wert zwei mal überschitten wird
         if(frame <= delay+death*2 && frame >= delay){
             lowerBorder.setVisible(true);
             lowerBorder.repaint();
@@ -135,22 +147,27 @@ public class partBorder extends JFrame implements PartView, View {
         }
 
         frame = frame +  spd;
-
+        
+        //hier fehlt die up phase da nichts sich ändert
+        
         if(frame <= delay+death && frame >= delay){ //keep
             if(ori<=1){
-                beat+=1;
-                if(beat>width){beat/=2;}
+                //up / down orientierung
+                beat+=1;//beat wert wird erhöht
+                if(beat>width){beat/=2;}//beat reset
 
-                double x = beat;
+                double x = beat; //berechnung von prozent wert zwischen maximaler weite (aka die höhe) und beat
                 double y = width;
                 double z = (double)x/y;
-                double result = height*z;
-                double result2 = height-height*z;
+                double result = height*z; //mathe etwas. ES FUNKTIONERT, OKAY
+                double result2 = height-height*z; //alternative ausrictungs formel (unused) es ändert nur die richtung
 
                 lowerBorder.setBounds(0,400-(int)result,500,(int)result);
                 upperBorder.setSize(500, (int)result);
             }
             else{
+                //left / right orientierung (ist noch nicht implementiert)
+                
                 beat+=1;
                 if(beat>width){beat/=2;}
 
@@ -159,13 +176,13 @@ public class partBorder extends JFrame implements PartView, View {
                 double z = (double)x/y;
                 double result = height*z;
                 double result2 = height-height*z;
-                
+
                 lowerBorder.setBounds(0,400-(int)result,500,(int)result);
                 //lowerBorder.setSize(500, (int)result2);
                 upperBorder.setSize(500, (int)result);
             }
 
-            upperBorder.setForeground(new Color(255,0,0));
+            upperBorder.setForeground(new Color(255,0,0)); //setzt die farbeeeeeeee
             upperBorder.setBackground(new Color(255,0,0));
 
             lowerBorder.setForeground(new Color(255,0,0));
@@ -177,27 +194,31 @@ public class partBorder extends JFrame implements PartView, View {
             // System.out.println("keep " + frame);
         }
         if(frame >= delay+death && frame <= delay+death*2){ //fade
+            //fade animation
+            
             lowerBorder.setBounds(0,400-height,500,400);
             upperBorder.setBounds(0,0,500,height);
-            
-            double x = frame-delay-death;
-            double y = death;
-            double z = (double)x/y;
-            double result = 255-z*255;
+
+            double x = frame-delay-death; //start punkt in frames
+            double y = death; //delta
+            double z = (double)x/y; //reative postion in der end sequenz
+            double result = 255-z*255; //relativer wert in % auf 0-255 übertragen
             upperBorder.setBackground(new Color((int)result,(int)result,(int)result)); 
             lowerBorder.setBackground(new Color((int)result,(int)result,(int)result)); 
-            
+
             collision = false;
-            // System.out.println(particle.getBackground());
+            // System.out.println(particle.getBackground()); //wichtige info für werte überwachung. Das kommt davon wenn man keine watches hat. Nur mal so
             // System.out.println("x "+x+" y "+y+" z "+z+" result "+(int)result);
         }
         else if(frame >= delay+death*2){
+            //alles wird entfernt und unsichtbar gemacht und OOB (out of bounds) gelagert für den gc
             startX = startY = width = height = -20;
             lowerBorder.setVisible(false);
             upperBorder.setVisible(false);
         }
     }
-
+    
+    //filler für interface
     public String getWindowInput(){
         return input;
     }

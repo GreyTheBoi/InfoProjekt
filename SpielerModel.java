@@ -1,5 +1,7 @@
 /**
  * 
+ * Nicht wichtig. Kann relevant werde, wenn Spieler Daten lädt
+ * 
  * @author Nicolas Lisgaras 
  * @version 20.06.19
  * 

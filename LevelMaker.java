@@ -1,5 +1,9 @@
 /**
- *Text genereted by Simple GUI Extension for BlueJ
+ * Text genereted by Simple GUI Extension for BlueJ
+ *
+ * @author Nicolas Lisgaras
+ * @version 06.07.19
+ * 
  */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
@@ -16,7 +20,9 @@ import javax.swing.border.Border;
 import javax.swing.*;
 
 public class LevelMaker extends JFrame implements ActionListener,View{
-
+    
+    // Der super praktische level maker vereinfacht das machen von levels UM EINIGES und ist zusammen mit MapDevHelper ein starkes tool 
+    
     LevelDatabase LDB;
 
     private JMenuBar menuBar;
@@ -313,6 +319,7 @@ public class LevelMaker extends JFrame implements ActionListener,View{
     }
 
     public void update(){
+        //manchmal ändern sich die bedeutungen der DB einträge und das wird angepasst
         if(typeCombobox.getSelectedItem().toString() == "pop"){
             widthLabel.setText("speed:");
         }
@@ -332,6 +339,10 @@ public class LevelMaker extends JFrame implements ActionListener,View{
             posXLabel.setText("X position:");
             posYLabel.setText("Y position:");
         }
+    }
+    
+    public PlayerView getPlayer(){
+        return null;
     }
 
     public Controller getController(){
@@ -355,6 +366,7 @@ public class LevelMaker extends JFrame implements ActionListener,View{
     }
 
     public void actionPerformed(ActionEvent e) {
+        //auswertung der inputs und DIEREKTE einführung in die datenbank
         if(e.getSource() == this.MakeButton){
             int ID = Integer.parseInt(IDField.getText());
             int frame = Integer.parseInt(frameField.getText());
@@ -368,7 +380,7 @@ public class LevelMaker extends JFrame implements ActionListener,View{
             int opacity = Integer.parseInt(opacityField.getText());
 
             LDB.insert(ID, frame, type, death, posX, posY, width, height, delay, opacity);
-            LDB.selectAll();
+            LDB.selectAll(); //hier wird die datenbank angezeigt
         }
     }
 }

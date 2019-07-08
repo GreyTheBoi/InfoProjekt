@@ -5,7 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.*;
 
 /**
- * Write a description of class DB here.
+ * Level Datenbank
  *
  * @author Nicolas Lisgaras
  * @version 03.07.19
@@ -18,7 +18,7 @@ public class LevelDatabase
     public static String Tname = "Level1";
 
     LevelDatabase(){
-
+        //leer
     }
 
     /**
@@ -47,7 +47,12 @@ public class LevelDatabase
             }
         }
     }
-
+    
+    /**
+     * Erstellt eine Verbindung
+     * 
+     * @return Connection verbindungs referenz
+     */
     private Connection connect() {
         // SQLite connection string
         String url = prefix+DBname+DBsuffix;
@@ -164,7 +169,12 @@ public class LevelDatabase
             System.out.println(e.getMessage());
         }
     }
-
+    
+    /**
+     * gibt größe der datenbank aus (ausgenommen ID -1 und negativen ID generell.) BEGINNT BEI 0
+     * 
+     * @return int gesuchter wert
+     */
     public int getSize(){
         String sql = "SELECT frame, type, death, posX, posY, width, height, delay, opacity, ID FROM " + Tname;
         int i = 0;
@@ -181,7 +191,13 @@ public class LevelDatabase
         }
         return i;
     }
-
+    
+    /**
+     * @param select spalte die ausgewählt wird
+     * @param ID position/ID, datenbank schlüssel siehe L. 101
+     * 
+     * @return String gesuchter wert
+     */
     public String selectString(String select,int ID){
         String sql = "SELECT "+select+", ID FROM " + Tname;
         String IDs = Integer.toString(ID);
@@ -201,7 +217,13 @@ public class LevelDatabase
         }
         return"eof";
     }
-
+    
+    /**
+     * @param select spalte die ausgewählt wird
+     * @param ID position/ID, datenbank schlüssel siehe L. 101
+     * 
+     * @return int gesuchter wert
+     */
     public int selectInt(String select,int ID){
         String sql = "SELECT "+select+", ID FROM " + Tname;
         String IDs = Integer.toString(ID);

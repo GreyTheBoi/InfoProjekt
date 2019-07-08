@@ -1,5 +1,11 @@
 /**
+ * Für Kommentare siehe partBorder
+ * 
  *Text genereted by Simple GUI Extension for BlueJ
+ *
+ * @author Nikolas Grafwallner, Nicolas Lisgaras
+ * @version 06.07.19
+ *
  */
 import javax.swing.UIManager.LookAndFeelInfo;
 import java.awt.*;
@@ -77,6 +83,10 @@ public class partPopup extends JFrame implements PartView, View {
 
     public int getPartCount(){
         return partCount;
+    }
+    
+    public PlayerView getPlayer(){
+        return null;
     }
 
     //base funktionen
